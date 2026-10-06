@@ -1,0 +1,2132 @@
+{
+  "status": "success",
+  "message": "Data ditemukan",
+  "data": [
+    {
+      "poliklinik": "KLINIK KULIT & KELAMIN",
+      "dokter": "Sunrise D S.,dr.,M.Med.Sc., Sp.DVE",
+      "jam_praktik": "12:30",
+      "total_antrian": 20,
+      "sudah_dilayani": 16,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK KULIT & KELAMIN",
+      "dokter": "LUTIA UTAMI, M.Sc., dr., Sp.KK",
+      "jam_praktik": "11:00",
+      "total_antrian": 28,
+      "sudah_dilayani": 24,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "13",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "14",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "13",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "14",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK KULIT & KELAMIN",
+      "dokter": "DINDA SARASWATI,dr., Sp.DV",
+      "jam_praktik": "09:00",
+      "total_antrian": 8,
+      "sudah_dilayani": 8,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK KULIT & KELAMIN",
+      "dokter": "Devi Artami S.,dr.,M.Sc., Sp.D.V.E, Sub",
+      "jam_praktik": "00:00",
+      "total_antrian": 4,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "1",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK KULIT & KELAMIN",
+      "dokter": "MEDICIA YURISTA, dr., Sp.PD",
+      "jam_praktik": "00:00",
+      "total_antrian": 2,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "1",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK OBSGYN 1",
+      "dokter": "ALFAINA WAHYUNI, dr. Sp.OG., M.Kes",
+      "jam_praktik": "09:00",
+      "total_antrian": 17,
+      "sudah_dilayani": 14,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "12",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "15",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "16",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "17",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK OBSGYN 1",
+      "dokter": "Ivanna Beru Brahmana,dr.Sp.OG, Subs.,Dr.",
+      "jam_praktik": "12:30",
+      "total_antrian": 8,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK OBSGYN 1",
+      "dokter": "SUPRIYATININGSIH,dr.,Sp.OG.,M.,DR. Med.",
+      "jam_praktik": "15:00",
+      "total_antrian": 19,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "16",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": null
+        },
+        {
+          "no_periksa": "18",
+          "panggil": null
+        },
+        {
+          "no_periksa": "19",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "20",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK ANAK",
+      "dokter": "DYAH AYU S L, dr., MIPH., MHM., Sp.A.",
+      "jam_praktik": "12:00",
+      "total_antrian": 9,
+      "sudah_dilayani": 6,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK ANAK",
+      "dokter": "Rivadin Nurwan, dr., Sp.A",
+      "jam_praktik": "19:00",
+      "total_antrian": 25,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": null
+        },
+        {
+          "no_periksa": "16",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": null
+        },
+        {
+          "no_periksa": "18",
+          "panggil": null
+        },
+        {
+          "no_periksa": "19",
+          "panggil": null
+        },
+        {
+          "no_periksa": "20",
+          "panggil": null
+        },
+        {
+          "no_periksa": "21",
+          "panggil": null
+        },
+        {
+          "no_periksa": "22",
+          "panggil": null
+        },
+        {
+          "no_periksa": "23",
+          "panggil": null
+        },
+        {
+          "no_periksa": "24",
+          "panggil": null
+        },
+        {
+          "no_periksa": "25",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK ANAK",
+      "dokter": "BAMBANG EDI S, dr., Sp.A., M.Kes",
+      "jam_praktik": "08:30",
+      "total_antrian": 18,
+      "sudah_dilayani": 15,
+      "diproses": "-",
+      "terlewati": [
+        "BE-10"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "3"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "12",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "15",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "16",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "17",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "18",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK ANAK",
+      "dokter": "GINA PUSPITA, dr., M.Sc., Sp.A.",
+      "jam_praktik": "16:00",
+      "total_antrian": 15,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK NEUROLOGI",
+      "dokter": "FERY LUVITA SARI,dr., Sp.N",
+      "jam_praktik": "15:00",
+      "total_antrian": 15,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK NEUROLOGI",
+      "dokter": "TRI WAHYULIATI,dr., Sp.S., M.Kes",
+      "jam_praktik": "11:00",
+      "total_antrian": 19,
+      "sudah_dilayani": 16,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "12",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "13",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "16",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "17",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "18",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "19",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK MATA",
+      "dokter": "RETNO PUSPITANINGTYAS, dr., Sp.M",
+      "jam_praktik": "09:00",
+      "total_antrian": 10,
+      "sudah_dilayani": 10,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK MATA",
+      "dokter": "Arif Kusuma Wardhana, dr., Sp.M",
+      "jam_praktik": "19:00",
+      "total_antrian": 4,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK MATA",
+      "dokter": "KARTIKA KUSUMA WARDHANI, dr., Sp.M.",
+      "jam_praktik": "00:00",
+      "total_antrian": 2,
+      "sudah_dilayani": 2,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK PENYAKIT DALAM",
+      "dokter": "MEDICIA YURISTA, dr., Sp.PD",
+      "jam_praktik": "07:30",
+      "total_antrian": 16,
+      "sudah_dilayani": 16,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "12",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "13",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "14",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "15",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "16",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "17",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK PENYAKIT DALAM",
+      "dokter": "KHOIRUL FALAH, dr., Sp.PD",
+      "jam_praktik": "18:30",
+      "total_antrian": 18,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": null
+        },
+        {
+          "no_periksa": "16",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": null
+        },
+        {
+          "no_periksa": "18",
+          "panggil": null
+        },
+        {
+          "no_periksa": "19",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK PENYAKIT DALAM",
+      "dokter": "Wahyu Tri Kurniawan, dr., Sp.PD",
+      "jam_praktik": "16:30",
+      "total_antrian": 13,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK BEDAH",
+      "dokter": "Ridho Kusuma Wardi, dr., Sp.B",
+      "jam_praktik": "10:00",
+      "total_antrian": 7,
+      "sudah_dilayani": 7,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK BEDAH",
+      "dokter": "Azzam Hizbur Rahman, dr., Sp.B",
+      "jam_praktik": "15:30",
+      "total_antrian": 12,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK ORTHOPAEDI DAN TRAUMATO",
+      "dokter": "Arius Suwondo,dr., M.Ked.Klin., Sp.OT",
+      "jam_praktik": "18:30",
+      "total_antrian": 50,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": null
+        },
+        {
+          "no_periksa": "16",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": null
+        },
+        {
+          "no_periksa": "18",
+          "panggil": null
+        },
+        {
+          "no_periksa": "19",
+          "panggil": null
+        },
+        {
+          "no_periksa": "20",
+          "panggil": null
+        },
+        {
+          "no_periksa": "21",
+          "panggil": null
+        },
+        {
+          "no_periksa": "27",
+          "panggil": null
+        },
+        {
+          "no_periksa": "22",
+          "panggil": null
+        },
+        {
+          "no_periksa": "23",
+          "panggil": null
+        },
+        {
+          "no_periksa": "24",
+          "panggil": null
+        },
+        {
+          "no_periksa": "25",
+          "panggil": null
+        },
+        {
+          "no_periksa": "26",
+          "panggil": null
+        },
+        {
+          "no_periksa": "28",
+          "panggil": null
+        },
+        {
+          "no_periksa": "29",
+          "panggil": null
+        },
+        {
+          "no_periksa": "30",
+          "panggil": null
+        },
+        {
+          "no_periksa": "31",
+          "panggil": null
+        },
+        {
+          "no_periksa": "32",
+          "panggil": null
+        },
+        {
+          "no_periksa": "33",
+          "panggil": null
+        },
+        {
+          "no_periksa": "34",
+          "panggil": null
+        },
+        {
+          "no_periksa": "35",
+          "panggil": null
+        },
+        {
+          "no_periksa": "36",
+          "panggil": null
+        },
+        {
+          "no_periksa": "37",
+          "panggil": null
+        },
+        {
+          "no_periksa": "38",
+          "panggil": null
+        },
+        {
+          "no_periksa": "40",
+          "panggil": null
+        },
+        {
+          "no_periksa": "41",
+          "panggil": null
+        },
+        {
+          "no_periksa": "42",
+          "panggil": null
+        },
+        {
+          "no_periksa": "43",
+          "panggil": null
+        },
+        {
+          "no_periksa": "44",
+          "panggil": null
+        },
+        {
+          "no_periksa": "45",
+          "panggil": null
+        },
+        {
+          "no_periksa": "46",
+          "panggil": null
+        },
+        {
+          "no_periksa": "47",
+          "panggil": null
+        },
+        {
+          "no_periksa": "48",
+          "panggil": null
+        },
+        {
+          "no_periksa": "49",
+          "panggil": null
+        },
+        {
+          "no_periksa": "50",
+          "panggil": null
+        },
+        {
+          "no_periksa": "39",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK JANTUNG",
+      "dokter": "GAGAH BUANA PUTRA, dr., Sp.JP",
+      "jam_praktik": "08:00",
+      "total_antrian": 1,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK GIGI",
+      "dokter": "ANINDITA PURNAMA WULANDARI, DRG",
+      "jam_praktik": "14:30",
+      "total_antrian": 1,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK THT",
+      "dokter": "DEONI DANISWARA, dr., Sp.THT-KL",
+      "jam_praktik": "15:30",
+      "total_antrian": 12,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK THT",
+      "dokter": "RIZKA FAKHRIANI, dr., MM., Sp.THT-KL",
+      "jam_praktik": "10:00",
+      "total_antrian": 10,
+      "sudah_dilayani": 9,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK PSIKIATRI",
+      "dokter": "Warih Andan S.,dr.,M.Sc., Sp.KJ,Dr.",
+      "jam_praktik": "08:00",
+      "total_antrian": 25,
+      "sudah_dilayani": 22,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "11",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "12",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "13",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "14",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "15",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "16",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "20",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "21",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "22",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "23",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "24",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "25",
+          "panggil": null
+        },
+        {
+          "no_periksa": "26",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "27",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "28",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "29",
+          "panggil": "2"
+        },
+        {
+          "no_periksa": "18",
+          "panggil": "2"
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK PSIKIATRI",
+      "dokter": "RESSA NURZAKIYAH Z.,dr., M.Med.Sc, Sp.KJ",
+      "jam_praktik": "16:00",
+      "total_antrian": 26,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": null
+        },
+        {
+          "no_periksa": "2",
+          "panggil": null
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": null
+        },
+        {
+          "no_periksa": "6",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": null
+        },
+        {
+          "no_periksa": "9",
+          "panggil": null
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "18",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": null
+        },
+        {
+          "no_periksa": "16",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": null
+        },
+        {
+          "no_periksa": "19",
+          "panggil": null
+        },
+        {
+          "no_periksa": "20",
+          "panggil": null
+        },
+        {
+          "no_periksa": "21",
+          "panggil": null
+        },
+        {
+          "no_periksa": "22",
+          "panggil": null
+        },
+        {
+          "no_periksa": "23",
+          "panggil": null
+        },
+        {
+          "no_periksa": "24",
+          "panggil": null
+        },
+        {
+          "no_periksa": "25",
+          "panggil": null
+        },
+        {
+          "no_periksa": "26",
+          "panggil": null
+        }
+      ]
+    },
+    {
+      "poliklinik": "KLINIK PARU",
+      "dokter": "ARDORISYE SAPTATY F, dr.,  Sp.P., M.Kes",
+      "jam_praktik": "14:00",
+      "total_antrian": 20,
+      "sudah_dilayani": 0,
+      "diproses": "-",
+      "terlewati": [
+        "-"
+      ],
+      "antrian": [
+        {
+          "no_periksa": "1",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "2",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "3",
+          "panggil": null
+        },
+        {
+          "no_periksa": "4",
+          "panggil": null
+        },
+        {
+          "no_periksa": "5",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "6",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "7",
+          "panggil": null
+        },
+        {
+          "no_periksa": "8",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "9",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "10",
+          "panggil": null
+        },
+        {
+          "no_periksa": "11",
+          "panggil": null
+        },
+        {
+          "no_periksa": "14",
+          "panggil": null
+        },
+        {
+          "no_periksa": "12",
+          "panggil": null
+        },
+        {
+          "no_periksa": "13",
+          "panggil": null
+        },
+        {
+          "no_periksa": "15",
+          "panggil": null
+        },
+        {
+          "no_periksa": "16",
+          "panggil": null
+        },
+        {
+          "no_periksa": "17",
+          "panggil": "0"
+        },
+        {
+          "no_periksa": "18",
+          "panggil": null
+        },
+        {
+          "no_periksa": "19",
+          "panggil": null
+        },
+        {
+          "no_periksa": "20",
+          "panggil": "0"
+        }
+      ]
+    }
+  ]
+}
