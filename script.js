@@ -536,6 +536,13 @@ document.querySelectorAll('.mobile-dropdown-btn').forEach(button => {
   });
 });
 
+// Close drawer when clicking regular navigation links
+document.querySelectorAll('.mobile-drawer a').forEach(link => {
+  link.addEventListener('click', () => {
+    closeDrawer();
+  });
+});
+
 
 // ============================================================
 // 4. INITIALIZE: Start auto-refresh on DOM ready
