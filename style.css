@@ -61,7 +61,7 @@ body {
   padding: 12px 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .nav-group {
@@ -605,7 +605,7 @@ select.field-control {
 }
 
 .card-details-table tr {
-  border-bottom: 1px solid #f6f3f1;
+  border-bottom: 1px solid #f1ece9;
 }
 
 .card-details-table tr:last-child {
@@ -613,19 +613,19 @@ select.field-control {
 }
 
 .card-details-table td {
-  padding: 7px 0;
-  font-size: 12px;
+  padding: 8px 0;
+  font-size: 13px;
 }
 
 .detail-label {
-  color: #6b7280;
+  color: #4b5563;
   font-weight: 500;
 }
 
 .detail-value {
   text-align: right;
-  font-weight: 700;
-  color: #1f2937;
+  font-weight: 800;
+  color: #111827;
 }
 
 /* =========================================
@@ -1333,3 +1333,27 @@ select.field-control {
     transform: translateY(0) scale(1);
   }
 }
+
+/* =========================================
+   TEXT UPDATE FLASH HIGHLIGHT
+   ========================================= */
+.text-updated {
+  animation: textFlashHighlight 0.8s ease-out;
+  display: inline-block;
+}
+
+@keyframes textFlashHighlight {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

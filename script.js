@@ -172,19 +172,78 @@ function getServingInfo(item) {
   };
 }
 
-// ---- HELPER: Format terlewati (samakan endpoint, fallback panggil=3) ----
-function formatTerlewati(item) {
-  const terlewati = item.terlewati;
-  if (Array.isArray(terlewati)) {
-    const filtered = terlewati.filter(t => t && t !== '-');
-    if (filtered.length > 0) return filtered.join(', ');
-  } else if (terlewati && terlewati !== '-') {
-    return terlewati;
-  }
-  // Fallback: turunkan dari antrian panggil=3
+// ---- HELPER: Calculate Queue Category Stats ----
+function getAntrianStats(item) {
   const list = Array.isArray(item.antrian) ? item.antrian : [];
-  const lewat = list.filter(a => String(a.panggil) === '3').map(a => `No. ${a.no_periksa}`);
-  return lewat.length > 0 ? lewat.join(', ') : '-';
+
+  // Tentukan nomor antrean yang sedang dilayani / diproses
+  let sedangDilayani = 0;
+  if (item.diproses && item.diproses !== '-') {
+    const match = String(item.diproses).match(/\d+/);
+    if (match) sedangDilayani = parseInt(match[0], 10);
+  }
+
+  // Jika diproses '-' (misal jeda antar panggilan atau sudah selesai),
+  // ambil nomor tertinggi yang sudah dipanggil/dilayani
+  if (list.length > 0) {
+    const maxServed = list
+      .filter(a => ['1', '2'].includes(String(a.panggil)))
+      .reduce((max, a) => {
+        const num = parseInt(String(a.no_periksa).match(/\d+/)?.[0] || '0', 10);
+        return Math.max(max, num);
+      }, 0);
+    if (maxServed > sedangDilayani) {
+      sedangDilayani = maxServed;
+    }
+  }
+
+  // Hitung kategori berdasarkan nilai field panggil:
+  // Terlambat Belum Datang: panggil == null & nomor < sedang dilayani
+  // Terlambat Sudah Datang: panggil == '0' & nomor < sedang dilayani
+  // Dipanggil Tidak Hadir: panggil == '3'
+  // Selesai: item.sudah_dilayani
+  let belumDatang = 0;
+  let sudahDatang = 0;
+  let tidakHadir = 0;
+  let selesai = item.sudah_dilayani || 0;
+
+  list.forEach(a => {
+    const p = a.panggil === null || a.panggil === undefined ? null : String(a.panggil);
+    const noNum = parseInt(String(a.no_periksa).match(/\d+/)?.[0] || '0', 10);
+
+    if (sedangDilayani > 0 && noNum < sedangDilayani) {
+      if (p === null) {
+        belumDatang++;
+      } else if (p === '0') {
+        sudahDatang++;
+      }
+    }
+
+    if (p === '3') {
+      tidakHadir++;
+    }
+  });
+
+  // Jika di data list tidak ada panggil 3 namun item.terlewati ada data riil selain '-'
+  if (tidakHadir === 0 && Array.isArray(item.terlewati)) {
+    const validTerlewati = item.terlewati.filter(t => t && t !== '-');
+    if (validTerlewati.length > 0) {
+      tidakHadir = validTerlewati.length;
+    }
+  }
+
+  return {
+    terlambatBelumDatang: belumDatang > 0 ? belumDatang : '-',
+    terlambatSudahDatang: sudahDatang > 0 ? sudahDatang : '-',
+    dipanggilTidakHadir: tidakHadir > 0 ? tidakHadir : '-',
+    selesai: selesai,
+    totalPasien: item.total_antrian || 0
+  };
+}
+
+// ---- CARD KEY GENERATOR ----
+function getCardKey(item) {
+  return `${item.poliklinik}__${item.dokter}`;
 }
 
 // ---- BUILD SINGLE CARD HTML ----
@@ -193,15 +252,16 @@ function buildCardHTML(item) {
   const serving = getServingInfo(item);
   const icon = getPoliIcon(item.poliklinik);
   const waiting = Math.max(0, item.total_antrian - item.sudah_dilayani);
-  const terlewati = formatTerlewati(item);
+  const stats = getAntrianStats(item);
+  const cardKey = getCardKey(item);
 
   const servingValueClass = serving.isCode ? 'serving-value' : 'serving-value text-message';
 
   return `
-    <article class="poli-card card-fade-in">
+    <article class="poli-card card-fade-in" data-card-key="${escapeHTML(cardKey)}">
       <div class="card-top">
         <h3 class="card-doctor-name">${escapeHTML(item.dokter)}</h3>
-        <span class="badge-status ${status.class}">${status.label}</span>
+        <span class="badge-status ${status.class}" data-field="status">${status.label}</span>
       </div>
 
       <div class="card-middle">
@@ -212,32 +272,40 @@ function buildCardHTML(item) {
           <span class="badge-poli-name">${escapeHTML(item.poliklinik)}</span>
           <div class="waiting-box">
             <span class="waiting-label">Menunggu</span>
-            <span class="waiting-count">${waiting}</span>
+            <span class="waiting-count" data-field="waiting">${waiting}</span>
           </div>
         </div>
       </div>
 
-      <div class="serving-banner ${serving.theme}">
+      <div class="serving-banner ${serving.theme}" data-field="serving-banner">
         <span class="serving-caption">Sedang dilayani</span>
-        <span class="${servingValueClass}">${escapeHTML(serving.text)}</span>
+        <span class="${servingValueClass}" data-field="serving-value">${escapeHTML(serving.text)}</span>
       </div>
 
       <table class="card-details-table">
         <tr>
           <td class="detail-label">Jam praktik</td>
-          <td class="detail-value">${escapeHTML(item.jam_praktik)}</td>
+          <td class="detail-value" data-field="jam-praktik">${escapeHTML(item.jam_praktik || '-')}</td>
         </tr>
         <tr>
-          <td class="detail-label">Terlewati</td>
-          <td class="detail-value">${escapeHTML(terlewati)}</td>
+          <td class="detail-label">Terlambat Belum Datang</td>
+          <td class="detail-value" data-field="terlambat-belum">${stats.terlambatBelumDatang}</td>
         </tr>
         <tr>
-          <td class="detail-label">Selesai Dilayani</td>
-          <td class="detail-value">${item.sudah_dilayani}</td>
+          <td class="detail-label">Terlambat Sudah Datang</td>
+          <td class="detail-value" data-field="terlambat-sudah">${stats.terlambatSudahDatang}</td>
         </tr>
         <tr>
-          <td class="detail-label">Total</td>
-          <td class="detail-value">${item.total_antrian}</td>
+          <td class="detail-label">Dipanggil Tidak Hadir</td>
+          <td class="detail-value" data-field="tidak-hadir">${stats.dipanggilTidakHadir}</td>
+        </tr>
+        <tr>
+          <td class="detail-label">Selesai</td>
+          <td class="detail-value" data-field="selesai">${stats.selesai}</td>
+        </tr>
+        <tr>
+          <td class="detail-label">Total Pasien</td>
+          <td class="detail-value" data-field="total-pasien">${stats.totalPasien}</td>
         </tr>
       </table>
     </article>`;
@@ -251,25 +319,115 @@ function escapeHTML(str) {
   return div.innerHTML;
 }
 
-// ---- RENDER ALL CARDS ----
+// ---- HELPER: Trigger update highlight on element ----
+function updateTextWithHighlight(el, newText) {
+  if (!el) return;
+  const currentText = el.textContent.trim();
+  const nextText = String(newText).trim();
+
+  if (currentText !== nextText) {
+    el.textContent = nextText;
+    el.classList.remove('text-updated');
+    // trigger reflow to restart css animation
+    void el.offsetWidth;
+    el.classList.add('text-updated');
+  }
+}
+
+// ---- UPDATE EXISTING CARD IN-PLACE ----
+function updateCardContent(cardEl, item) {
+  const status = getDoctorStatus(item);
+  const serving = getServingInfo(item);
+  const waiting = Math.max(0, item.total_antrian - item.sudah_dilayani);
+  const stats = getAntrianStats(item);
+
+  // Status badge
+  const statusEl = cardEl.querySelector('[data-field="status"]');
+  if (statusEl) {
+    if (statusEl.textContent.trim() !== status.label) {
+      statusEl.className = `badge-status ${status.class} text-updated`;
+      statusEl.textContent = status.label;
+    }
+  }
+
+  // Waiting count
+  const waitingEl = cardEl.querySelector('[data-field="waiting"]');
+  updateTextWithHighlight(waitingEl, waiting);
+
+  // Serving banner & value
+  const bannerEl = cardEl.querySelector('[data-field="serving-banner"]');
+  const servingValEl = cardEl.querySelector('[data-field="serving-value"]');
+  if (bannerEl) {
+    bannerEl.className = `serving-banner ${serving.theme}`;
+  }
+  if (servingValEl) {
+    const desiredClass = serving.isCode ? 'serving-value' : 'serving-value text-message';
+    if (servingValEl.textContent.trim() !== serving.text) {
+      servingValEl.className = `${desiredClass} text-updated`;
+      servingValEl.textContent = serving.text;
+    } else {
+      servingValEl.className = desiredClass;
+    }
+  }
+
+  // Table rows
+  const jamEl = cardEl.querySelector('[data-field="jam-praktik"]');
+  updateTextWithHighlight(jamEl, item.jam_praktik || '-');
+
+  const terlambatBelumEl = cardEl.querySelector('[data-field="terlambat-belum"]');
+  updateTextWithHighlight(terlambatBelumEl, stats.terlambatBelumDatang);
+
+  const terlambatSudahEl = cardEl.querySelector('[data-field="terlambat-sudah"]');
+  updateTextWithHighlight(terlambatSudahEl, stats.terlambatSudahDatang);
+
+  const tidakHadirEl = cardEl.querySelector('[data-field="tidak-hadir"]');
+  updateTextWithHighlight(tidakHadirEl, stats.dipanggilTidakHadir);
+
+  const selesaiEl = cardEl.querySelector('[data-field="selesai"]');
+  updateTextWithHighlight(selesaiEl, stats.selesai);
+
+  const totalEl = cardEl.querySelector('[data-field="total-pasien"]');
+  updateTextWithHighlight(totalEl, stats.totalPasien);
+}
+
+// ---- RENDER OR UPDATE CARDS ----
 function renderCards(data, animate) {
   const container = document.getElementById('poli-grid-container');
   if (!container) return;
 
-  if (animate) {
-    // Fade out existing cards
-    container.classList.add('fade-out');
-    setTimeout(() => {
-      container.innerHTML = data.map(item => buildCardHTML(item)).join('');
-      container.classList.remove('fade-out');
-      container.classList.add('fade-in');
+  const existingCards = container.querySelectorAll('.poli-card[data-card-key]');
 
-      // Remove animation class after it's done
-      setTimeout(() => {
-        container.classList.remove('fade-in');
-      }, 500);
-    }, 350);
+  // Initial load atau jumlah card berbeda struktur (misal dari skeleton atau daftar poli berubah)
+  if (existingCards.length === 0 || existingCards.length !== data.length) {
+    container.innerHTML = data.map(item => buildCardHTML(item)).join('');
+    return;
+  }
+
+  // Update in-place hanya bagian teks/nilainya saja tanpa reload card
+  const cardMap = new Map();
+  existingCards.forEach(card => {
+    cardMap.set(card.getAttribute('data-card-key'), card);
+  });
+
+  let canUpdateAll = true;
+  for (const item of data) {
+    const key = getCardKey(item);
+    if (!cardMap.has(key)) {
+      canUpdateAll = false;
+      break;
+    }
+  }
+
+  if (canUpdateAll) {
+    data.forEach(item => {
+      const key = getCardKey(item);
+      const cardEl = cardMap.get(key);
+      if (cardEl) {
+        updateCardContent(cardEl, item);
+      }
+    });
   } else {
+    // Jika ada daftar dokter/klinik yang berganti urutan/baru
     container.innerHTML = data.map(item => buildCardHTML(item)).join('');
   }
 }
@@ -338,7 +496,10 @@ function resetCekResult() {
   const ids = ['val-nomor-antrean', 'val-pasien-depan', 'val-estimasi-waktu', 'val-status-nomor'];
   ids.forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.innerText = '-';
+    if (el) {
+      el.innerText = '-';
+      el.removeAttribute('title');
+    }
   });
   const valStatus = document.getElementById('val-status-nomor');
   if (valStatus) valStatus.style.color = '';
@@ -474,12 +635,78 @@ document.getElementById('btn-cek-action').addEventListener('click', function() {
 
   // Pasien di depan = nomor lebih kecil yang belum selesai (belum panggil=2)
   const myNum = parseInt(inputNomor.match(/\d+/)?.[0] || '0', 10);
+  const seenBefore = new Set();
   const depan = list.filter(a => {
     const n = parseInt(String(a.no_periksa).match(/\d+/)?.[0] || '0', 10);
-    return n < myNum && String(a.panggil) !== '2';
+    const key = String(a.no_periksa);
+    if (n < myNum && String(a.panggil) !== '2') {
+      if (!seenBefore.has(key)) {
+        seenBefore.add(key);
+        return true;
+      }
+    }
+    return false;
   }).length;
   valDepan.innerText = depan === 0 ? '0 Pasien' : `${depan} Pasien`;
-  valEstimasi.innerText = depan === 0 ? 'Sekarang' : `±${depan * 7} mnt`;
+
+  // Logika Estimasi giliran menggunakan format jam (pukul perkiraan dipanggil)
+  if (st === '2') {
+    valEstimasi.innerText = 'Selesai';
+    valEstimasi.title = 'Pemeriksaan telah selesai';
+  } else if (st === '1') {
+    valEstimasi.innerText = 'Sekarang';
+    valEstimasi.title = 'Nomor antrean Anda sedang dipanggil';
+  } else if (st === '3') {
+    valEstimasi.innerText = 'Terlewati';
+    valEstimasi.title = 'Nomor antrean terlewati, silakan lapor ke petugas';
+  } else if (depan === 0) {
+    const now = new Date();
+    const isStarted = jadwal.sudah_dilayani > 0 || (jadwal.diproses && jadwal.diproses !== '-');
+
+    // Jika dokter belum mulai dan jam praktik belum tiba, tampilkan jam praktik
+    if (!isStarted && jadwal.jam_praktik && jadwal.jam_praktik !== '-' && jadwal.jam_praktik.includes(':')) {
+      const parts = jadwal.jam_praktik.split(':');
+      const h = parseInt(parts[0], 10);
+      const m = parseInt(parts[1], 10);
+      if (!isNaN(h) && !isNaN(m)) {
+        const scheduleDate = new Date();
+        scheduleDate.setHours(h, m, 0, 0);
+        if (now < scheduleDate) {
+          const targetH = String(scheduleDate.getHours()).padStart(2, '0');
+          const targetM = String(scheduleDate.getMinutes()).padStart(2, '0');
+          valEstimasi.innerText = `± ${targetH}:${targetM} WIB`;
+          valEstimasi.title = `Perkiraan giliran saat dokter mulai praktik (${targetH}:${targetM} WIB)`;
+          return;
+        }
+      }
+    }
+    valEstimasi.innerText = 'Sekarang';
+    valEstimasi.title = 'Giliran Anda berikutnya / segera dipanggil';
+  } else {
+    // Hitung perkiraan jam panggilan (asumsi rata-rata 7 menit per pasien)
+    const now = new Date();
+    let baseTime = new Date();
+
+    const isStarted = jadwal.sudah_dilayani > 0 || (jadwal.diproses && jadwal.diproses !== '-');
+    if (!isStarted && jadwal.jam_praktik && jadwal.jam_praktik !== '-' && jadwal.jam_praktik.includes(':')) {
+      const parts = jadwal.jam_praktik.split(':');
+      const h = parseInt(parts[0], 10);
+      const m = parseInt(parts[1], 10);
+      if (!isNaN(h) && !isNaN(m)) {
+        const scheduleDate = new Date();
+        scheduleDate.setHours(h, m, 0, 0);
+        if (now < scheduleDate) {
+          baseTime = scheduleDate;
+        }
+      }
+    }
+
+    const estimasiDate = new Date(baseTime.getTime() + (depan * 7 * 60 * 1000));
+    const targetH = String(estimasiDate.getHours()).padStart(2, '0');
+    const targetM = String(estimasiDate.getMinutes()).padStart(2, '0');
+    valEstimasi.innerText = `± ${targetH}:${targetM} WIB`;
+    valEstimasi.title = `Perkiraan jam ${targetH}:${targetM} WIB (± ${depan * 7} menit lagi)`;
+  }
 });
 
 // ============================================================
