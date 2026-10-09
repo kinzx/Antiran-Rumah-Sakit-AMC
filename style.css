@@ -62,6 +62,43 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+/* =========================================
+   THEME TOGGLE BUTTON (pojok kanan navbar)
+   ========================================= */
+.theme-toggle {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5ede9;
+  border: 1px solid #f1ece9;
+  border-radius: 10px;
+  color: var(--primary-coral);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--primary-coral);
+  color: #ffffff;
+}
+
+/* Mode terang: tampilkan ikon bulan (tujuan = mode gelap) */
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+.theme-toggle .icon-moon {
+  display: block;
 }
 
 .nav-group {
@@ -427,7 +464,7 @@ select.field-control {
 
 .poli-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   margin-bottom: 48px;
 }
@@ -946,7 +983,7 @@ select.field-control {
    ========================================= */
 @media (max-width: 1024px) {
   .poli-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
   }
   .footer-grid {
@@ -963,7 +1000,22 @@ select.field-control {
 
 @media (max-width: 768px) {
   .main-wrapper {
-    padding: 16px 14px 40px 14px;
+    padding: 16px 20px 40px 20px;
+  }
+
+  /* Mobile: kartu selalu center, tidak menempel tepi kanan */
+  .hero-banner,
+  .cek-antrian-card,
+  .poli-grid,
+  .footer-container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .poli-card {
+    width: 100%;
+    max-width: 100%;
   }
 
   .nav-container {
@@ -1079,14 +1131,19 @@ select.field-control {
 
   /* Poliklinik Cards */
   .poli-grid {
-    grid-template-columns: 1fr;
+    /* minmax(0,1fr) — default 1fr punya min-width:auto, card tidak bisa menyusut
+       di bawah min-content (badge nowrap + nama dokter) lalu meluber ke kanan */
+    grid-template-columns: minmax(0, 1fr);
     gap: 16px;
     margin-bottom: 32px;
+    max-width: 100%;
   }
 
   .poli-card {
     padding: 16px 14px;
     border-radius: 16px;
+    min-width: 0;
+    max-width: 100%;
   }
 
   .card-top {
@@ -1098,6 +1155,8 @@ select.field-control {
   .card-doctor-name {
     font-size: 14px;
     line-height: 1.35;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .badge-status {
@@ -1106,9 +1165,15 @@ select.field-control {
     flex-shrink: 0;
   }
 
+  .middle-info {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .card-middle {
     gap: 12px;
     margin-bottom: 14px;
+    min-width: 0;
   }
 
   .specialty-icon-circle {
@@ -1125,10 +1190,13 @@ select.field-control {
   .badge-poli-name {
     font-size: 8.5px;
     padding: 3px 6px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .waiting-box {
     padding: 5px 10px;
+    max-width: 100%;
   }
 
   .waiting-label {
@@ -1176,12 +1244,20 @@ select.field-control {
 }
 
 @media (max-width: 480px) {
+  .main-wrapper {
+    padding: 14px 16px 40px 16px;
+  }
+
   .hero-banner {
     padding: 20px 16px;
   }
 
   .hero-title {
     font-size: 20px;
+  }
+
+  .cek-antrian-card {
+    padding: 16px 14px;
   }
 
   .queue-status-row {
@@ -1355,5 +1431,179 @@ select.field-control {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* =========================================
+   DARK MODE (mode malam)
+   Diaktifkan lewat atribut data-theme="dark" di <html>
+   ========================================= */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --text-dark: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-light: #64748b;
+  --border-color: #334155;
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="dark"] body {
+  background: radial-gradient(circle at 10% 20%, #16202e 0%, #101823 50%, #0b1119 100%);
+  color: var(--text-dark);
+}
+
+/* Navbar */
+html[data-theme="dark"] .navbar {
+  background: #141c27;
+  border-bottom-color: #24303f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .theme-toggle {
+  background: #1f2a38;
+  border-color: #2c3a4c;
+  color: #f0b9a9;
+}
+
+/* Mode gelap: tampilkan ikon matahari (tujuan = mode terang) */
+html[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+/* Hero banner: redupkan sedikit supaya tidak menyilaukan di malam hari */
+html[data-theme="dark"] .hero-banner {
+  background: linear-gradient(135deg, #a8523f 0%, #b25a46 55%, #ba634f 100%);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* Kartu utama */
+html[data-theme="dark"] .cek-antrian-card,
+html[data-theme="dark"] .poli-card,
+html[data-theme="dark"] .footer-container {
+  background: #18212d;
+  border-color: #263243;
+}
+
+html[data-theme="dark"] .poli-card:hover {
+  box-shadow: 0 16px 30px -8px rgba(0, 0, 0, 0.55);
+}
+
+/* Label & teks */
+html[data-theme="dark"] .cek-datetime,
+html[data-theme="dark"] .field-label,
+html[data-theme="dark"] .detail-label,
+html[data-theme="dark"] .footer-col h4,
+html[data-theme="dark"] .footer-links a,
+html[data-theme="dark"] .footer-contact-item,
+html[data-theme="dark"] .footer-contact-item a,
+html[data-theme="dark"] .footer-address,
+html[data-theme="dark"] .nav-link {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .status-tile-label,
+html[data-theme="dark"] .waiting-label,
+html[data-theme="dark"] .footer-bottom {
+  color: var(--text-muted);
+}
+
+html[data-theme="dark"] .status-tile-value,
+html[data-theme="dark"] .detail-value,
+html[data-theme="dark"] .waiting-count,
+html[data-theme="dark"] .card-doctor-name {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .cek-alert-note {
+  color: #f0a58c;
+}
+
+/* Isi form */
+html[data-theme="dark"] .field-control {
+  background: #131c27;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] select.field-control option {
+  background: #131c27;
+  color: #e2e8f0;
+}
+
+/* Tile & badge */
+html[data-theme="dark"] .status-tile {
+  background-color: #2a1f1c;
+  border-color: #3d2a24;
+}
+
+html[data-theme="dark"] .waiting-box {
+  background-color: #1b2634;
+}
+
+html[data-theme="dark"] .badge-hadir {
+  background-color: rgba(47, 163, 96, 0.18);
+  color: #5fd39a;
+}
+
+html[data-theme="dark"] .badge-belum {
+  background-color: rgba(202, 138, 4, 0.18);
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] .badge-selesai {
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #a5b4fc;
+}
+
+/* Ikon poliklinik (SVG inline pakai stroke hardcoded) */
+html[data-theme="dark"] .specialty-icon-circle {
+  background: #131c27;
+  border-color: #2c3a4c;
+}
+
+html[data-theme="dark"] .specialty-icon-circle svg {
+  stroke: #cbd5e1;
+}
+
+/* Garis pemisah tabel */
+html[data-theme="dark"] .card-details-table tr,
+html[data-theme="dark"] .footer-address,
+html[data-theme="dark"] .footer-bottom {
+  border-color: #263243;
+}
+
+/* Skeleton loading */
+html[data-theme="dark"] .skeleton-line,
+html[data-theme="dark"] .skeleton-circle {
+  background: linear-gradient(90deg, #1c2734 25%, #24313f 50%, #1c2734 75%);
+  background-size: 200% 100%;
+}
+
+/* Drawer mobile */
+html[data-theme="dark"] .mobile-drawer {
+  background: #141c27;
+}
+
+html[data-theme="dark"] .drawer-title,
+html[data-theme="dark"] .drawer-close-btn:hover,
+html[data-theme="dark"] .mobile-nav-link:hover,
+html[data-theme="dark"] .mobile-nav-item.active > .mobile-nav-link {
+  color: #e2e8f0;
+}
+
+html[data-theme="dark"] .nav-toggle-btn,
+html[data-theme="dark"] .mobile-nav-link {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .nav-toggle-btn:hover,
+html[data-theme="dark"] .drawer-close-btn:hover,
+html[data-theme="dark"] .mobile-nav-link:hover,
+html[data-theme="dark"] .mobile-nav-item.active > .mobile-nav-link,
+html[data-theme="dark"] .mobile-sub-menu a:hover {
+  background: #1f2a38;
 }
 

@@ -772,6 +772,51 @@ document.querySelectorAll('.mobile-drawer a').forEach(link => {
 
 
 // ============================================================
-// 4. INITIALIZE: Start auto-refresh on DOM ready
+// 4. THEME TOGGLE (mode terang / mode malam)
+// ============================================================
+(function () {
+  const btn = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+
+  // Ikon + label selalu menunjukkan mode yang AKAN dipakai setelah klik
+  function syncButton(theme) {
+    if (!btn) return;
+    const nextIsDark = theme === 'dark';
+    btn.title = nextIsDark ? 'Mode Terang' : 'Mode Gelap';
+    btn.setAttribute('aria-label', nextIsDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap');
+    btn.setAttribute('aria-pressed', String(!nextIsDark));
+  }
+
+  function applyTheme(theme, save) {
+    root.setAttribute('data-theme', theme);
+    syncButton(theme);
+    if (save) {
+      try { localStorage.setItem('amc-theme', theme); } catch (e) {}
+    }
+  }
+
+  // Set atribut sudah dipasang script inline di <head>; ini hanya sinkronkan UI
+  syncButton(root.getAttribute('data-theme') || 'light');
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+    });
+  }
+
+  // Ikuti perubahan sistem selama user belum memilih manual
+  const mq = window.matchMedia && matchMedia('(prefers-color-scheme: dark)');
+  if (mq && mq.addEventListener) {
+    mq.addEventListener('change', function (e) {
+      let saved = null;
+      try { saved = localStorage.getItem('amc-theme'); } catch (err) {}
+      if (!saved) applyTheme(e.matches ? 'dark' : 'light', false);
+    });
+  }
+})();
+
+
+// ============================================================
+// 5. INITIALIZE: Start auto-refresh on DOM ready
 // ============================================================
 startAutoRefresh();
