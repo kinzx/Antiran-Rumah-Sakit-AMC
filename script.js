@@ -9,120 +9,47 @@ const REFRESH_INTERVAL_MS = 15000; // 15 seconds
 let refreshTimer = null;
 let antrianData = [];
 
-// ---- SVG ICON MAP (per Poliklinik) ----
-const POLI_ICONS = {
-  'KLINIK PENYAKIT DALAM': `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M13 2c-1 0-2 1.5-2 3v3.5C8 9 6 11 6 14.5 6 18.5 9 22 13 22c3.5 0 6-2.5 6-6.5 0-3-1.5-5.5-4-6.5V5c0-1.5-1-3-2-3z"/>
-    <path d="M9 14.5c1 1.2 2.5 1.5 4 1"/>
-  </svg>`,
-  'KLINIK KULIT & KELAMIN': `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 2v9"/>
-    <path d="M9 4.5l3 3.5 3-3.5"/>
-    <path d="M4 14h16"/>
-    <path d="M6 18h12"/>
-    <path d="M8 22h8"/>
-    <circle cx="6" cy="8" r="0.8" fill="#374151"/>
-    <circle cx="18" cy="8" r="0.8" fill="#374151"/>
-    <circle cx="8" cy="11" r="0.8" fill="#374151"/>
-    <circle cx="16" cy="11" r="0.8" fill="#374151"/>
-  </svg>`,
-  'KLINIK NEUROLOGI': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="3"/>
-    <circle cx="19" cy="6" r="2"/>
-    <circle cx="5" cy="6" r="2"/>
-    <circle cx="5" cy="18" r="2"/>
-    <circle cx="19" cy="18" r="2"/>
-    <line x1="12" y1="9" x2="12" y2="3"/>
-    <circle cx="12" cy="3" r="1.5"/>
-    <line x1="10" y1="10" x2="6.5" y2="7.5"/>
-    <line x1="14" y1="10" x2="17.5" y2="7.5"/>
-    <line x1="10" y1="14" x2="6.5" y2="16.5"/>
-    <line x1="14" y1="14" x2="17.5" y2="16.5"/>
-  </svg>`,
-  'KLINIK GIGI': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M7 3C4.24 3 2 5.24 2 8c0 3.2 1.6 5.8 2.5 8.5C5.4 19.3 7 21 8.5 21c1.8 0 2.2-2.2 3.5-2.2s1.7 2.2 3.5 2.2c1.5 0 3.1-1.7 4-4.5.9-2.7 2.5-5.3 2.5-8.5 0-2.76-2.24-5-5-5-1.5 0-2.8.7-3.5 1.8C10.8 3.7 9.5 3 7 3z"/>
-  </svg>`,
-  'KLINIK MATA': `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="9"/>
-    <path d="M3 12c2.5-4 5.5-6 9-6s6.5 2 9 6c-2.5 4-5.5 6-9 6s-6.5-2-9-6z"/>
-    <circle cx="12" cy="12" r="3"/>
-  </svg>`,
-  'KLINIK BEDAH': `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M7 4v11"/>
-    <circle cx="7" cy="18" r="2.2"/>
-    <path d="M12 3v18"/>
-    <path d="M10 4h4"/>
-    <path d="M17 4v11"/>
-    <circle cx="17" cy="18" r="2.2"/>
-    <path d="M5.5 12h3"/>
-    <path d="M15.5 12h3"/>
-  </svg>`,
-  'KLINIK ANAK': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="8" r="5"/>
-    <path d="M12 13v3"/>
-    <path d="M9 21h6"/>
-    <path d="M8 5c0-1 .5-2 2-2.5"/>
-    <path d="M16 5c0-1-.5-2-2-2.5"/>
-    <circle cx="10" cy="8" r="0.7" fill="#374151"/>
-    <circle cx="14" cy="8" r="0.7" fill="#374151"/>
-    <path d="M10 10.5c.8.6 1.5.8 2 .8s1.2-.2 2-.8"/>
-  </svg>`,
-  'KLINIK OBSGYN 1': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="10" r="7"/>
-    <path d="M12 3v2"/>
-    <path d="M9 14c1 1.5 2 2 3 2s2-.5 3-2"/>
-    <path d="M10 8.5l1 1.5 1-1.5"/>
-    <path d="M7 18l2-3"/>
-    <path d="M17 18l-2-3"/>
-    <circle cx="9.5" cy="9" r="0.5" fill="#374151"/>
-    <circle cx="14.5" cy="9" r="0.5" fill="#374151"/>
-  </svg>`,
-  'KLINIK ORTHOPAEDI DAN TRAUMATO': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8 4v16"/>
-    <path d="M16 4v16"/>
-    <path d="M6 8h4"/>
-    <path d="M14 8h4"/>
-    <path d="M6 16h4"/>
-    <path d="M14 16h4"/>
-    <circle cx="8" cy="12" r="2.5"/>
-    <circle cx="16" cy="12" r="2.5"/>
-    <path d="M10.5 12h3"/>
-  </svg>`,
-  'KLINIK JANTUNG': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M19.5 12.572l-7.5 7.428-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 1 1 7.5 6.566z"/>
-    <path d="M3 12h4l2-4 3 8 2-4h7"/>
-  </svg>`,
-  'KLINIK THT': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M6 8.5C6 5.46 8.69 3 12 3s6 2.46 6 5.5c0 2-1.2 3.7-3 4.5v2a3 3 0 0 1-6 0v-2c-1.8-.8-3-2.5-3-4.5z"/>
-    <path d="M10 15v3a2 2 0 0 0 4 0v-3"/>
-    <circle cx="10" cy="8" r="0.8" fill="#374151"/>
-    <circle cx="14" cy="8" r="0.8" fill="#374151"/>
-    <path d="M11 11h2"/>
-  </svg>`,
-  'KLINIK PSIKIATRI': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="9"/>
-    <path d="M9 9c0-1.5 1.3-3 3-3s3 1.5 3 3c0 2-3 2.5-3 5"/>
-    <circle cx="12" cy="18" r="0.8" fill="#374151"/>
-  </svg>`,
-  'KLINIK PARU': `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 4v8"/>
-    <path d="M8 12c-3 0-5 2-5 5s2 4 5 4"/>
-    <path d="M16 12c3 0 5 2 5 5s-2 4-5 4"/>
-    <path d="M8 12c0-3 1.5-5 4-8"/>
-    <path d="M16 12c0-3-1.5-5-4-8"/>
-    <path d="M10 16h4"/>
-  </svg>`,
+// ---- ICON MAP: nama poliklinik -> file di img/Icon Poli ----
+const POLI_ICON_FILES = {
+  'KLINIK PENYAKIT DALAM': 'Penyakit dalam.png',
+  'KLINIK PENYAKIT DALAM B': 'Penyakit dalam b.png',
+  'KLINIK KULIT & KELAMIN': 'kulit.png',
+  'KLINIK NEUROLOGI': 'syaraf.png',
+  'KLINIK GIGI': 'gigi.png',
+  'KLINIK MATA': 'mata.png',
+  'KLINIK BEDAH': 'bedah.png',
+  'KLINIK ANAK': 'anak.png',
+  'KLINIK OBSGYN 1': 'obgyn.png',
+  'KLINIK OBSGYN': 'obgyn.png',
+  'KLINIK ORTHOPAEDI DAN TRAUMATO': 'orthopedi.png',
+  'KLINIK JANTUNG': 'jantung.png',
+  'KLINIK THT': 'THT.png',
+  'KLINIK PSIKIATRI': 'psikiatri.png',
+  'KLINIK PARU': 'paru.png',
+  'KLINIK DOKTER UMUM': 'dokter umum.png',
+  'IGD 24 JAM': 'IGD 24 Jam.png',
+  'KLINIK BEAUTY CENTER': 'beauty center.png',
+  'KLINIK HIPNOTERAPI': 'hipnoterapi.png',
+  'KLINIK OKUPASI TERAPI': 'okupasi terapi.png',
+  'KLINIK LAKTASI': 'laktasi.png',
+  'KLINIK FISIOTERAPI': 'fisioterapi.png',
+  'KLINIK AKUPUNKTUR': 'akupunkture.png',
+  'KLINIK TERAPI WICARA': 'terapi wicara.png',
+  'KLINIK REHAB MEDIK': 'rehab medik.png',
+  'KLINIK VAKSIN': 'vaksin.png',
+  'LABORATORIUM': 'laboratorium.png',
+  'RADIOLOGI': 'radiologi.png',
+  'KLINIK STEMCELL': 'stemcell.png',
+  'KLINIK OZON': 'ozon.png'
 };
 
-// Default icon for unknown clinics
-const DEFAULT_ICON = `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 2v20M2 12h20"/>
-  <circle cx="12" cy="12" r="9"/>
-</svg>`;
+const ICON_POLI_BASE = 'img/Icon Poli/';
+const DEFAULT_ICON_FILE = 'dokter umum.png';
 
 // ---- HELPER: Get Icon for Poliklinik ----
 function getPoliIcon(poliName) {
-  return POLI_ICONS[poliName] || DEFAULT_ICON;
+  var file = POLI_ICON_FILES[String(poliName).toUpperCase()] || DEFAULT_ICON_FILE;
+  return '<img src="' + ICON_POLI_BASE + encodeURIComponent(file) + '" alt="" width="36" height="36" class="poli-icon-img" loading="lazy">';
 }
 
 // ---- HELPER: Determine doctor attendance status ----
