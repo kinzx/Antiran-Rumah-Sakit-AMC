@@ -13,13 +13,13 @@
   <!-- External Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Theme: apply sebelum render supaya tidak ada kedipan (FOUC) -->
+  <!-- Theme: apply sebelum render supaya tidak ada kedipan (FOUC).
+       Default selalu mode TERANG; mode malam hanya kalau user memilihnya sendiri. -->
   <script>
     (function () {
-      var t;
-      try { t = localStorage.getItem('amc-theme'); } catch (e) {}
-      if (!t) t = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', t);
+      var t = 'light';
+      try { t = localStorage.getItem('amc-theme') || 'light'; } catch (e) {}
+      document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
     })();
   </script>
 </head>
@@ -30,6 +30,14 @@
        ========================================= -->
   <nav class="navbar">
     <div class="nav-container">
+      <!-- Tombol beranda (pojok kiri atas navbar) -->
+      <a href="https://rsamcmuhammadiyah.com/" class="nav-home-btn" id="nav-home-btn" aria-label="Buka situs RS AMC Muhammadiyah" title="Beranda RS AMC">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 10.5 12 3l9 7.5"/>
+          <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/>
+        </svg>
+      </a>
+
       <!-- Center Logo (RS AMC Muhammadiyah) -->
       <a href="#" class="logo-container" title="RS AMC Muhammadiyah">
         <img src="https://rsamcmuhammadiyah.com/assets/img/logo_baru.png" alt="RS AMC Muhammadiyah" class="navbar-logo-img">
@@ -123,7 +131,7 @@
         </div>
 
         <div class="status-tile">
-          <span class="status-tile-label">Status nomor</span>
+          <span class="status-tile-label">Status</span>
           <span class="status-tile-value" id="val-status-nomor">-</span>
         </div>
       </div>
@@ -218,11 +226,19 @@
       </div>
 
       <div class="footer-bottom">
-        &copy; All rights reserved. <a href="#">RS AMC Muhammadiyah</a>
+        <div>version 2.10</div>
+        <div>&copy; All rights reserved. <a href="#">IT RS AMC Muhammadiyah</a></div>
       </div>
     </footer>
 
   </main>
+
+  <!-- Tombol naik ke atas (muncul saat halaman digulir ke bawah) -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Kembali ke atas" title="Ke atas">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <!-- External JavaScript -->
   <script src="script.js"></script>

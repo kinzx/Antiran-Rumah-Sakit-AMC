@@ -16,8 +16,10 @@ const POLI_ICON_FILES = {
   'KLINIK KULIT & KELAMIN': 'kulit.png',
   'KLINIK NEUROLOGI': 'syaraf.png',
   'KLINIK GIGI': 'gigi.png',
+  'KLINIK GIGI PROSTHODONTI': 'gigi.png',
   'KLINIK MATA': 'mata.png',
   'KLINIK BEDAH': 'bedah.png',
+  'KLINIK BEDAH ANAK': 'bedah.png',
   'KLINIK ANAK': 'anak.png',
   'KLINIK OBSGYN 1': 'obgyn.png',
   'KLINIK OBSGYN': 'obgyn.png',
@@ -25,6 +27,7 @@ const POLI_ICON_FILES = {
   'KLINIK JANTUNG': 'jantung.png',
   'KLINIK THT': 'THT.png',
   'KLINIK PSIKIATRI': 'psikiatri.png',
+  'KLINIK PSIKOLOG': 'psikiatri.png',
   'KLINIK PARU': 'paru.png',
   'KLINIK DOKTER UMUM': 'dokter umum.png',
   'IGD 24 JAM': 'IGD 24 Jam.png',
@@ -52,9 +55,43 @@ function getPoliIcon(poliName) {
   return '<img src="' + ICON_POLI_BASE + encodeURIComponent(file) + '" alt="" width="36" height="36" class="poli-icon-img" loading="lazy">';
 }
 
+// ---- HELPER: status_praktik dari API -> label + kelas badge ----
+// API baru kirim nilai snake_case; label Bahasa Indonesia, nilai tak dikenal apa adanya.
+const STATUS_PRAKTIK_LABEL = {
+  belum_mulai:      { label: 'Belum Mulai', class: 'badge-belum' },
+  sedang_berjalan:  { label: 'Berjalan',     class: 'badge-hadir' },
+  selesai:          { label: 'Selesai',      class: 'badge-selesai' }
+};
+
+// ---- HELPER: kode panggil dokter ----
+// API baru kirim kode_panggil ("RP"); API lama tidak punya, ambil dari depan diproses ("RP-4" -> "RP").
+function getKodePanggil(item) {
+  if (item.kode_panggil) return String(item.kode_panggil).trim();
+  const diproses = item.diproses && item.diproses !== '-' ? String(item.diproses) : '';
+  return diproses ? diproses.split('-')[0] : '';
+}
+
+// ---- HELPER: Baris "Kode dokter" = kode + nomor yang sedang diproses ----
+// kode_panggil "RP" + diproses "RP-4" => "RP-4"; diproses "-" => "RP"; tanpa kode => "-".
+// Terpisah dari baris jam praktik supaya user jelas bedanya: jam = kapan, kode = nomor panggil.
+function getKodeDokterText(item) {
+  const kode = getKodePanggil(item);
+  if (!kode) return '-';
+  if (kode.indexOf('-') !== -1) return kode;
+  const nomor = String(item.diproses || '').match(/\d+/);
+  return nomor ? `${kode}-${nomor[0]}` : kode;
+}
+
 // ---- HELPER: Determine doctor attendance status ----
 // panggil: null=belum datang, 0=sudah datang, 1=dipanggil, 2=diperiksa, 3=terlewati
 function getDoctorStatus(item) {
+  // status_praktik (API baru) lebih baru dari heuristik panggil, jadi dipakai dulu
+  const praktik = STATUS_PRAKTIK_LABEL[String(item.status_praktik || '').toLowerCase()];
+  if (praktik) return praktik;
+  if (item.status_praktik) {
+    return { label: String(item.status_praktik), class: 'badge-belum' };
+  }
+
   if (item.sudah_dilayani >= item.total_antrian && item.total_antrian > 0) {
     return { label: 'Selesai', class: 'badge-selesai' };
   }
@@ -84,8 +121,9 @@ function getServingInfo(item) {
   }
 
   if (item.diproses && item.diproses !== '-') {
+    // getKodeDokterText menambahkan kode dokter kalau diproses cuma nomor ("4" -> "RP-4")
     return {
-      text: item.diproses,
+      text: getKodeDokterText(item),
       theme: 'theme-mustard',
       isCode: true
     };
@@ -205,7 +243,7 @@ function buildCardHTML(item) {
       </div>
 
       <div class="serving-banner ${serving.theme}" data-field="serving-banner">
-        <span class="serving-caption">Sedang dilayani</span>
+        <span class="serving-caption">Sedang diperiksa</span>
         <span class="${servingValueClass}" data-field="serving-value">${escapeHTML(serving.text)}</span>
       </div>
 
@@ -406,6 +444,12 @@ function findJadwal() {
   return antrianData.find(d => d.poliklinik === selectKlinik.value && d.dokter === selectDokter.value) || null;
 }
 
+// Label nomor antrean ikut kode dokter: "DV-1". Tanpa kode -> nomor saja.
+function getNomorLabel(jadwal, nomor) {
+  const kode = getKodePanggil(jadwal);
+  return kode ? `${kode}-${nomor}` : String(nomor);
+}
+
 function updateNomorDropdown() {
   const selectNomor = document.getElementById('select-nomor');
   if (!selectNomor) return;
@@ -415,8 +459,9 @@ function updateNomorDropdown() {
     return;
   }
   const nums = [...new Set(jadwal.antrian.map(a => String(a.no_periksa)))].sort((a, b) => Number(a) - Number(b));
+  // value tetap nomor polos supaya pencocokan di tombol Cek tidak berubah
   selectNomor.innerHTML = '<option value="" selected>Pilih Nomor</option>' +
-    nums.map(n => `<option value="${escapeHTML(n)}">${escapeHTML(n)}</option>`).join('');
+    nums.map(n => `<option value="${escapeHTML(n)}">${escapeHTML(getNomorLabel(jadwal, n))}</option>`).join('');
 }
 
 function resetCekResult() {
@@ -429,7 +474,7 @@ function resetCekResult() {
     }
   });
   const valStatus = document.getElementById('val-status-nomor');
-  if (valStatus) valStatus.style.color = '';
+  if (valStatus) valStatus.className = 'status-tile-value';
 }
 
 function updateDokterDropdown(data, selectedKlinik, currentDokter) {
@@ -545,7 +590,7 @@ document.getElementById('btn-cek-action').addEventListener('click', function() {
     return;
   }
 
-  valNomor.innerText = inputNomor;
+  valNomor.innerText = getNomorLabel(jadwal, inputNomor);
 
   // Status ikut kode panggil endpoint: null=belum datang, 0=sudah datang,
   // 1=dipanggil, 2=diperiksa, 3=terlewati
@@ -558,7 +603,11 @@ document.getElementById('btn-cek-action').addEventListener('click', function() {
   };
   const st = saya[0].panggil === null || saya[0].panggil === undefined ? 'null' : String(saya[0].panggil);
   valStatus.innerText = STATUS_LABEL[st] || 'Menunggu';
-  valStatus.style.color = (st === '1' || st === '2') ? '#2fa360' : '#1f2937';
+  // Warna lewat kelas CSS, bukan inline style: inline style menang atas aturan tema
+  // sehingga teks gelap tetap gelap di mode malam.
+  valStatus.className = 'status-tile-value' +
+    ((st === '1' || st === '2') ? ' is-active' : '') +
+    (st === '3' ? ' is-late' : '');
 
   // Pasien di depan = nomor lebih kecil yang belum selesai (belum panggil=2)
   const myNum = parseInt(inputNomor.match(/\d+/)?.[0] || '0', 10);
@@ -731,19 +780,44 @@ document.querySelectorAll('.mobile-drawer a').forEach(link => {
     });
   }
 
-  // Ikuti perubahan sistem selama user belum memilih manual
-  const mq = window.matchMedia && matchMedia('(prefers-color-scheme: dark)');
-  if (mq && mq.addEventListener) {
-    mq.addEventListener('change', function (e) {
-      let saved = null;
-      try { saved = localStorage.getItem('amc-theme'); } catch (err) {}
-      if (!saved) applyTheme(e.matches ? 'dark' : 'light', false);
-    });
-  }
+  // Tema mengikuti pilihan user saja (default terang), tidak ikut pengaturan sistem
 })();
 
 
 // ============================================================
-// 5. INITIALIZE: Start auto-refresh on DOM ready
+// 5. TOMBOL NAIK KE ATAS
+// ============================================================
+(function () {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  // Ambang 400px: di bawah itu tombol hanya mengganggu, layar masih penuh konten
+  const THRESHOLD = 400;
+  let ticking = false;
+
+  function sync() {
+    btn.classList.toggle('is-visible', window.scrollY > THRESHOLD);
+    ticking = false;
+  }
+
+  // requestAnimationFrame: scroll event bisa 60x/detik, jangan paksa layout tiap kali
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(sync);
+  }, { passive: true });
+
+  sync();
+
+  btn.addEventListener('click', function () {
+    // hormati preferensi "kurangi gerakan"
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+})();
+
+
+// ============================================================
+// 6. INITIALIZE: Start auto-refresh on DOM ready
 // ============================================================
 startAutoRefresh();

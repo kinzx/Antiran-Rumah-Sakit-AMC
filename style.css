@@ -66,6 +66,46 @@ body {
 }
 
 /* =========================================
+   TOMBOL BERANDA (pojok kiri navbar)
+   ========================================= */
+.nav-home-btn {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5ede9;
+  border: 1px solid #f1ece9;
+  border-radius: 10px;
+  color: var(--primary-coral);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.nav-home-btn:hover {
+  background: var(--primary-coral);
+  border-color: var(--primary-coral);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .nav-home-btn {
+  background: #1f2a38;
+  border-color: #2c3a4c;
+  color: #f0b9a9;
+}
+
+html[data-theme="dark"] .nav-home-btn:hover {
+  background: var(--primary-coral);
+  border-color: var(--primary-coral);
+  color: #ffffff;
+}
+
+/* =========================================
    THEME TOGGLE BUTTON (pojok kanan navbar)
    ========================================= */
 .theme-toggle {
@@ -189,7 +229,12 @@ body {
   margin-bottom: 28px;
 }
 
-/* Subtle Indonesian Kawung Batik Pattern */
+/* Watermark logo RS AMC di banner, ganti pola batik kawung.
+   Pakai AMC-tanpa-nama-pad.png: logo yang sama tapi sudah diberi padding
+   transparan di sekelilingnya, jadi antar logo ada jarak dan tidak berdempetan.
+   opacity 8% sesuai permintaan.
+   Dua lapisan gambar yang sama, lapisan kedua digeser setengah tile (half-drop),
+   supaya logo tidak tersusun rapi dalam baris-baris. */
 .hero-banner::after {
   content: "";
   position: absolute;
@@ -197,9 +242,11 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-opacity='0.16'%3E%3Cellipse cx='35' cy='17.5' rx='10' ry='16'/%3E%3Cellipse cx='35' cy='52.5' rx='10' ry='16'/%3E%3Cellipse cx='17.5' cy='35' rx='16' ry='10'/%3E%3Cellipse cx='52.5' cy='35' rx='16' ry='10'/%3E%3Ccircle cx='35' cy='35' r='4' fill='%23ffffff' fill-opacity='0.12'/%3E%3Ccircle cx='0' cy='0' r='5' fill='%23ffffff' fill-opacity='0.12'/%3E%3Ccircle cx='70' cy='0' r='5' fill='%23ffffff' fill-opacity='0.12'/%3E%3Ccircle cx='0' cy='70' r='5' fill='%23ffffff' fill-opacity='0.12'/%3E%3Ccircle cx='70' cy='70' r='5' fill='%23ffffff' fill-opacity='0.12'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 70px 70px;
-  opacity: 0.9;
+  background-image: url("img/AMC-tanpa-nama-pad.png"), url("img/AMC-tanpa-nama-pad.png");
+  background-repeat: repeat, repeat;
+  background-position: 0 0, 45px 45px;
+  background-size: 90px 90px, 90px 90px;
+  opacity: 0.08;
   pointer-events: none;
 }
 
@@ -501,6 +548,10 @@ select.field-control {
   color: #1f2937;
   line-height: 1.35;
   flex: 1;
+  /* min-width:0 wajib: tanpa ini min-content flex item = kata terpanjang,
+     jadi nama dokter panjang mendorong badge status keluar card */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .badge-status {
@@ -509,6 +560,7 @@ select.field-control {
   padding: 4px 10px;
   border-radius: 20px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .badge-hadir {
@@ -596,7 +648,7 @@ select.field-control {
   line-height: 1.1;
 }
 
-/* Sedang Dilayani Banner */
+/* Sedang Diperiksa Banner */
 .serving-banner {
   border-radius: 10px;
   padding: 10px 16px;
@@ -1538,10 +1590,17 @@ html[data-theme="dark"] .cek-alert-note {
 }
 
 /* Isi form */
+/* background-color (bukan shorthand `background`) supaya background-image chevron
+   dari aturan select.field-control di atas tidak terhapus. */
 html[data-theme="dark"] .field-control {
-  background: #131c27;
+  background-color: #131c27;
   border-color: #334155;
   color: #e2e8f0;
+}
+
+/* Chevron dropdown versi terang; versi base pakai stroke %236b7280 yang tenggelam di #131c27 */
+html[data-theme="dark"] select.field-control {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 
 html[data-theme="dark"] select.field-control option {
@@ -1621,5 +1680,94 @@ html[data-theme="dark"] .mobile-nav-link:hover,
 html[data-theme="dark"] .mobile-nav-item.active > .mobile-nav-link,
 html[data-theme="dark"] .mobile-sub-menu a:hover {
   background: #1f2a38;
+}
+
+/* Logo RS AMC: PNG logo gelap/transparan hilang di latar navy,
+   jadi dikasih chip putih. border-radius 999px = maksimal, dikunci ke setengah
+   sisi terpendek (tinggi 42px+8px padding => kapsul), jadi tidak bisa lebih bulat lagi.
+   Tanpa override box-sizing supaya tinggi navbar tidak berubah. */
+html[data-theme="dark"] .navbar-logo-img,
+html[data-theme="dark"] .footer-logo-img {
+  background: #ffffff;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+/* Status nomor: label "Terlewati" masih belum ada aturan eksplisit di mode terang. */
+html[data-theme="dark"] .status-tile-value.is-late {
+  color: #f87171;
+}
+
+/* Nilai status (Sudah Datang / Dipanggil / Diperiksa) pakai warna aksen di kedua mode;
+   style.color inline di script.js dihapus supaya tema yang menentukan.
+   Catatan specificity: `html[data-theme="dark"] .status-tile-value` = (0,2,1), jadi
+   varian dark butuh selektor sama panjang (0,3,1) supaya hijau tidak ketimpa. */
+.status-tile-value.is-active {
+  color: #2fa360;
+}
+
+html[data-theme="dark"] .status-tile-value.is-active {
+  color: #5fd39a;
+}
+
+/* =========================================
+   TOMBOL NAIK KE ATAS
+   ========================================= */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--primary-coral);
+  box-shadow: 0 6px 18px rgba(31, 41, 55, 0.18);
+  cursor: pointer;
+  /* Sembunyi pakai opacity+visibility, bukan display:none,
+     supaya transisi masuk/keluar bisa jalan */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--primary-coral);
+  border-color: var(--primary-coral);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .back-to-top {
+  background: #1b2534;
+  border-color: #334155;
+  color: #f0b9a9;
+}
+
+html[data-theme="dark"] .back-to-top:hover {
+  background: var(--primary-coral);
+  border-color: var(--primary-coral);
+  color: #ffffff;
+}
+
+/* Layar sempit: rapatkan ke sudut supaya tidak menutupi kartu */
+@media (max-width: 600px) {
+  .back-to-top {
+    right: 14px;
+    bottom: 14px;
+    width: 40px;
+    height: 40px;
+  }
 }
 
