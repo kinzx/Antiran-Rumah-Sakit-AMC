@@ -397,6 +397,68 @@ function renderCards(data, animate) {
   }
 }
 
+// ---- FILTER KARTU (klinik + dokter) ----
+// State dipisah dari dropdown "Cek Antrian Saya" supaya filter kartu tidak
+// mengubah pilihan cek nomor, dan sebaliknya.
+let filterState = { klinik: '', dokter: '' };
+
+function getFilteredData() {
+  return antrianData.filter(d =>
+    (!filterState.klinik || d.poliklinik === filterState.klinik) &&
+    (!filterState.dokter || d.dokter === filterState.dokter)
+  );
+}
+
+function renderFilteredCards(animate) {
+  const data = getFilteredData();
+  renderCards(data, animate);
+  const empty = document.getElementById('filter-empty');
+  if (empty) empty.hidden = data.length > 0;
+}
+
+function updateFilterDokterOptions(data, selectedKlinik) {
+  const selDokter = document.getElementById('filter-dokter');
+  if (!selDokter) return;
+  const pool = selectedKlinik ? data.filter(d => d.poliklinik === selectedKlinik) : data;
+  const dokters = [...new Set(pool.map(d => d.dokter))].sort();
+  selDokter.innerHTML = '<option value="" selected>Pilih Dokter</option>' +
+    dokters.map(d => `<option value="${escapeHTML(d)}">${escapeHTML(d)}</option>`).join('');
+  filterState.dokter = '';
+}
+
+function populateFilterDropdowns(data) {
+  const selKlinik = document.getElementById('filter-klinik');
+  const selDokter = document.getElementById('filter-dokter');
+  if (!selKlinik || !selDokter) return;
+
+  const kliniks = [...new Set(data.map(d => d.poliklinik))].sort();
+  selKlinik.innerHTML = '<option value="" selected>Pilih Klinik</option>' +
+    kliniks.map(k => `<option value="${escapeHTML(k)}">${escapeHTML(k)}</option>`).join('');
+
+  updateFilterDokterOptions(data, '');
+
+  selKlinik.onchange = function () {
+    filterState.klinik = this.value;
+    updateFilterDokterOptions(data, filterState.klinik);
+    renderFilteredCards(false);
+  };
+
+  selDokter.onchange = function () {
+    filterState.dokter = this.value;
+    renderFilteredCards(false);
+  };
+
+  const btnReset = document.getElementById('btn-reset-filter');
+  if (btnReset) {
+    btnReset.onclick = function () {
+      filterState = { klinik: '', dokter: '' };
+      selKlinik.value = '';
+      updateFilterDokterOptions(data, '');
+      renderFilteredCards(false);
+    };
+  }
+}
+
 // ---- POPULATE DROPDOWNS ----
 function populateDropdowns(data) {
   const selectKlinik = document.getElementById('select-klinik');
@@ -514,11 +576,12 @@ async function refreshData(isInitial) {
   const newData = await fetchAntrianData();
   if (newData !== null) {
     antrianData = newData;
-    renderCards(antrianData, !isInitial);
+    renderFilteredCards(!isInitial);
 
     // Only populate dropdowns on initial load
     if (isInitial) {
       populateDropdowns(antrianData);
+      populateFilterDropdowns(antrianData);
     }
   }
 }

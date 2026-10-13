@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Monitor Antrian Poliklinik Rawat Jalan - RS AMC Muhammadiyah</title>
-  <link rel="icon" type="image/png" href="/Favicon.png">
+  <link rel="icon" type="image/png" href="img/Favicon.png">
   <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -148,7 +148,30 @@
       <div class="divider-green"></div>
     </div>
 
-    <!-- 4. Poliklinik Cards Grid (Dynamically Rendered from antrian.json) -->
+    <!-- 4. Filter Kartu (Klinik + Dokter) -->
+    <section class="filter-bar">
+      <div class="filter-grid">
+        <div class="input-field-group">
+          <label class="field-label" for="filter-klinik">Klinik</label>
+          <select id="filter-klinik" class="field-control">
+            <option value="" selected>Memuat...</option>
+          </select>
+        </div>
+
+        <div class="input-field-group">
+          <label class="field-label" for="filter-dokter">Dokter</label>
+          <select id="filter-dokter" class="field-control">
+            <option value="" selected>Memuat...</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn-reset-filter" id="btn-reset-filter">Reset Filter</button>
+      </div>
+
+      <p class="filter-empty" id="filter-empty" hidden>Tidak ada jadwal yang cocok dengan filter.</p>
+    </section>
+
+    <!-- 5. Poliklinik Cards Grid (Dynamically Rendered from antrian.json) -->
     <section class="poli-grid" id="poli-grid-container">
       <!-- Loading Skeleton -->
       <div class="poli-card skeleton-card" aria-hidden="true">
