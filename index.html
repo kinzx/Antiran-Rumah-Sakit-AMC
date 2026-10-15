@@ -1,269 +1,377 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monitor Antrian Poliklinik Rawat Jalan - RS AMC Muhammadiyah</title>
-  <link rel="icon" type="image/png" href="img/Favicon.png">
-  <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monitor Antrian Poliklinik Rawat Jalan - RS AMC Muhammadiyah</title>
+    <link rel="icon" type="image/png" href="img/Favicon.png" />
+    <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- External Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- Theme: apply sebelum render supaya tidak ada kedipan (FOUC).
+    <!-- Theme: apply sebelum render supaya tidak ada kedipan (FOUC).
        Default selalu mode TERANG; mode malam hanya kalau user memilihnya sendiri. -->
-  <script>
-    (function () {
-      var t = 'light';
-      try { t = localStorage.getItem('amc-theme') || 'light'; } catch (e) {}
-      document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
-    })();
-  </script>
-</head>
-<body>
-
-  <!-- =========================================
+    <script>
+      (function () {
+        var t = "light";
+        try {
+          t = localStorage.getItem("amc-theme") || "light";
+        } catch (e) {}
+        document.documentElement.setAttribute(
+          "data-theme",
+          t === "dark" ? "dark" : "light",
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- =========================================
        NAVBAR (Center Logo Only)
        ========================================= -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <!-- Tombol beranda (pojok kiri atas navbar) -->
-      <a href="https://rsamcmuhammadiyah.com/" class="nav-home-btn" id="nav-home-btn" aria-label="Buka situs RS AMC Muhammadiyah" title="Beranda RS AMC">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 10.5 12 3l9 7.5"/>
-          <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/>
-        </svg>
-      </a>
+    <nav class="navbar">
+      <div class="nav-container">
+        <!-- Tombol beranda (pojok kiri atas navbar) -->
+        <a
+          href="https://rsamcmuhammadiyah.com/"
+          class="nav-home-btn"
+          id="nav-home-btn"
+          aria-label="Buka situs RS AMC Muhammadiyah"
+          title="Beranda RS AMC"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 10.5 12 3l9 7.5" />
+            <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" />
+          </svg>
+        </a>
 
-      <!-- Center Logo (RS AMC Muhammadiyah) -->
-      <a href="#" class="logo-container" title="RS AMC Muhammadiyah">
-        <img src="https://rsamcmuhammadiyah.com/assets/img/logo_baru.png" alt="RS AMC Muhammadiyah" class="navbar-logo-img">
-      </a>
+        <!-- Center Logo (RS AMC Muhammadiyah) -->
+        <a href="#" class="logo-container" title="RS AMC Muhammadiyah">
+          <img
+            src="https://rsamcmuhammadiyah.com/assets/img/logo_baru.png"
+            alt="RS AMC Muhammadiyah"
+            class="navbar-logo-img"
+          />
+        </a>
 
-      <!-- Theme Toggle (pojok kanan atas navbar) -->
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Ganti mode terang / gelap" title="Mode Gelap">
-        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 1.5v2.5M12 20v2.5M3.7 3.7l1.8 1.8M18.5 18.5l1.8 1.8M1.5 12H4M20 12h2.5M3.7 20.3l1.8-1.8M18.5 5.5l1.8-1.8"/>
-        </svg>
-        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-  <!-- =========================================
-       PAGE CONTENT WRAPPER
-       ========================================= -->
-  <main class="main-wrapper">
-
-    <!-- 1. Hero Banner -->
-    <section class="hero-banner">
-      <div class="hero-content">
-        <div class="live-badge-wrap">
-          <span class="live-status-pill">
-            <span class="live-pulse"></span>
-            LIVE SYNCHRONIZED
-          </span>
-          <span class="live-update-info">Update: Tiap 15 Detik</span>
-        </div>
-        <h1 class="hero-title">
-          Monitor Antrian Poliklinik Rawat Jalan
-        </h1>
+        <!-- Theme Toggle (pojok kanan atas navbar) -->
+        <button
+          type="button"
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Ganti mode terang / gelap"
+          title="Mode Gelap"
+        >
+          <svg
+            class="icon-sun"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 1.5v2.5M12 20v2.5M3.7 3.7l1.8 1.8M18.5 18.5l1.8 1.8M1.5 12H4M20 12h2.5M3.7 20.3l1.8-1.8M18.5 5.5l1.8-1.8"
+            />
+          </svg>
+          <svg
+            class="icon-moon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
       </div>
-    </section>
-
-    <!-- 2. Search / Cek Antrian Saya Card -->
-    <section class="cek-antrian-card">
-      <div class="cek-header">
-        <h2 class="cek-title">Cek Antrian Saya</h2>
-        <div class="cek-datetime" id="clock-display">
-          <span>Kamis, 1 Oktober 2026</span>
-          <span class="time-accent" id="time-display">20:57 WIB</span>
-        </div>
-      </div>
-
-      <!-- Form Filter / Inputs -->
-      <div class="cek-form-grid">
-        <div class="input-field-group">
-          <label class="field-label" for="select-klinik">Klinik</label>
-          <select id="select-klinik" class="field-control">
-            <option value="" selected>Memuat...</option>
-          </select>
-        </div>
-
-        <div class="input-field-group">
-          <label class="field-label" for="select-dokter">Dokter</label>
-          <select id="select-dokter" class="field-control">
-            <option value="" selected>Memuat...</option>
-          </select>
-        </div>
-
-        <div class="input-field-group">
-          <label class="field-label" for="select-nomor">Nomor antrean Anda</label>
-          <select id="select-nomor" class="field-control">
-            <option value="" selected>Pilih Nomor</option>
-          </select>
-        </div>
-
-        <button type="button" class="btn-cek" id="btn-cek-action">Cek</button>
-      </div>
-
-      <!-- Queue Status Summary Boxes (4 Columns, No QR) -->
-      <div class="queue-status-row">
-        <div class="status-tile">
-          <span class="status-tile-label">Nomor Antrean</span>
-          <span class="status-tile-value" id="val-nomor-antrean">-</span>
-        </div>
-
-        <div class="status-tile">
-          <span class="status-tile-label">Pasien di depan Anda</span>
-          <span class="status-tile-value" id="val-pasien-depan">-</span>
-        </div>
-
-        <div class="status-tile">
-          <span class="status-tile-label">Estimasi giliran</span>
-          <span class="status-tile-value" id="val-estimasi-waktu">-</span>
-        </div>
-
-        <div class="status-tile">
-          <span class="status-tile-label">Status</span>
-          <span class="status-tile-value" id="val-status-nomor">-</span>
-        </div>
-      </div>
-
-      <!-- Alert / Notice Note -->
-      <p class="cek-alert-note">
-        Jika nomor telah terlewati, segera lapor ke petugas pendaftaran poli untuk dipanggil ulang.
-      </p>
-    </section>
-
-    <!-- 3. Two-Tone Color Indicator Bar -->
-    <div class="indicator-divider">
-      <div class="divider-coral"></div>
-      <div class="divider-green"></div>
-    </div>
-
-    <!-- 4. Filter Kartu (Klinik + Dokter) -->
-    <section class="filter-bar">
-      <div class="filter-grid">
-        <div class="input-field-group">
-          <label class="field-label" for="filter-klinik">Klinik</label>
-          <select id="filter-klinik" class="field-control">
-            <option value="" selected>Memuat...</option>
-          </select>
-        </div>
-
-        <div class="input-field-group">
-          <label class="field-label" for="filter-dokter">Dokter</label>
-          <select id="filter-dokter" class="field-control">
-            <option value="" selected>Memuat...</option>
-          </select>
-        </div>
-
-        <button type="button" class="btn-reset-filter" id="btn-reset-filter">Hapus Pilihan</button>
-      </div>
-
-      <p class="filter-empty" id="filter-empty" hidden>Tidak ada jadwal yang cocok dengan filter.</p>
-    </section>
-
-    <!-- 5. Poliklinik Cards Grid (Dynamically Rendered from antrian.json) -->
-    <section class="poli-grid" id="poli-grid-container">
-      <!-- Loading Skeleton -->
-      <div class="poli-card skeleton-card" aria-hidden="true">
-        <div class="skeleton-line skeleton-title"></div>
-        <div class="skeleton-line skeleton-badge"></div>
-        <div class="skeleton-circle"></div>
-        <div class="skeleton-line skeleton-banner"></div>
-        <div class="skeleton-line skeleton-row"></div>
-        <div class="skeleton-line skeleton-row"></div>
-      </div>
-      <div class="poli-card skeleton-card" aria-hidden="true">
-        <div class="skeleton-line skeleton-title"></div>
-        <div class="skeleton-line skeleton-badge"></div>
-        <div class="skeleton-circle"></div>
-        <div class="skeleton-line skeleton-banner"></div>
-        <div class="skeleton-line skeleton-row"></div>
-        <div class="skeleton-line skeleton-row"></div>
-      </div>
-      <div class="poli-card skeleton-card" aria-hidden="true">
-        <div class="skeleton-line skeleton-title"></div>
-        <div class="skeleton-line skeleton-badge"></div>
-        <div class="skeleton-circle"></div>
-        <div class="skeleton-line skeleton-banner"></div>
-        <div class="skeleton-line skeleton-row"></div>
-        <div class="skeleton-line skeleton-row"></div>
-      </div>
-    </section>
+    </nav>
 
     <!-- =========================================
-         5. FOOTER SECTION
-         ========================================= -->
-    <footer class="footer-container">
-      <div class="footer-grid">
-        <!-- Brand & Address Column -->
-        <div class="footer-col">
-          <div class="brand-logo-wrap" style="margin-bottom: 16px;">
-            <img src="https://rsamcmuhammadiyah.com/assets/img/logo_baru.png" alt="RS AMC Muhammadiyah" class="footer-logo-img">
+       PAGE CONTENT WRAPPER
+       ========================================= -->
+    <main class="main-wrapper">
+      <!-- 1. Hero Banner -->
+      <section class="hero-banner">
+        <div class="hero-content">
+          <div class="live-badge-wrap">
+            <span class="live-status-pill">
+              <span class="live-pulse"></span>
+              LIVE SYNCHRONIZED
+            </span>
+            <span class="live-update-info">Update: Tiap 15 Detik</span>
+          </div>
+          <h1 class="hero-title">Monitor Antrian Poliklinik Rawat Jalan</h1>
+        </div>
+      </section>
+
+      <!-- 2. Search / Cek Antrian Saya Card -->
+      <section class="cek-antrian-card">
+        <div class="cek-header">
+          <h2 class="cek-title">Cek Antrian Saya</h2>
+          <div class="cek-datetime" id="clock-display">
+            <span>Kamis, 1 Oktober 2026</span>
+            <span class="time-accent" id="time-display">20:57 WIB</span>
+          </div>
+        </div>
+
+        <!-- Form Filter / Inputs -->
+        <div class="cek-form-grid">
+          <div class="input-field-group">
+            <label class="field-label" for="select-klinik">Klinik</label>
+            <select id="select-klinik" class="field-control">
+              <option value="" selected>Memuat...</option>
+            </select>
           </div>
 
-          <p class="footer-address">
-            Jl. HOS Cokroaminoto 178, Pakuncen, Wirobrajan, Yogyakarta 55252
-          </p>
+          <div class="input-field-group">
+            <label class="field-label" for="select-dokter">Dokter</label>
+            <select id="select-dokter" class="field-control">
+              <option value="" selected>Memuat...</option>
+            </select>
+          </div>
+
+          <div class="input-field-group">
+            <label class="field-label" for="select-nomor"
+              >Nomor antrean Anda</label
+            >
+            <select id="select-nomor" class="field-control">
+              <option value="" selected>Pilih Nomor</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn-cek" id="btn-cek-action">Cek</button>
         </div>
 
-        <!-- Hubungi Kami -->
-        <div class="footer-col">
-          <h4>Hubungi Kami</h4>
-          <div class="footer-contact-item">Emergency Call: <a href="tel:0274618224">(0274) 618224</a></div>
-          <div class="footer-contact-item">Call Center: <a href="tel:0274618400">(0274) 618400</a></div>
-          <div class="footer-contact-item">WhatsApp: <a href="https://wa.me/6285179701004" target="_blank">+6285179701004</a></div>
-          <div class="footer-contact-item">Email: <a href="mailto:info@amcmuhammadiyah.com">info@amcmuhammadiyah.com</a></div>
+        <!-- Queue Status Summary Boxes (4 Columns, No QR) -->
+        <div class="queue-status-row">
+          <div class="status-tile">
+            <span class="status-tile-label">Nomor Antrean</span>
+            <span class="status-tile-value" id="val-nomor-antrean">-</span>
+          </div>
+
+          <div class="status-tile">
+            <span class="status-tile-label">Pasien di depan Anda</span>
+            <span class="status-tile-value" id="val-pasien-depan">-</span>
+          </div>
+
+          <div class="status-tile">
+            <span class="status-tile-label">Estimasi giliran</span>
+            <span class="status-tile-value" id="val-estimasi-waktu">-</span>
+          </div>
+
+          <div class="status-tile">
+            <span class="status-tile-label">Status</span>
+            <span class="status-tile-value" id="val-status-nomor">-</span>
+          </div>
         </div>
 
-        <!-- Sekilas RS AMC -->
-        <div class="footer-col">
-          <h4>Sekilas RS AMC</h4>
-          <ul class="footer-links">
-            <li><a href="#point-of-interest">Point Of Interest</a></li>
-            <li><a href="#profil">Profil</a></li>
-            <li><a href="#indikator-mutu">Indikator Mutu</a></li>
-            <li><a href="#mitra-kami">Mitra Kami</a></li>
-          </ul>
-        </div>
+        <!-- Alert / Notice Note -->
+        <p class="cek-alert-note">
+          Jika nomor telah terlewati, segera lapor ke petugas pendaftaran poli
+          untuk dipanggil ulang.
+        </p>
+      </section>
 
-        <!-- Jalur Cepat -->
-        <div class="footer-col">
-          <h4>Jalur Cepat</h4>
-          <ul class="footer-links">
-            <li><a href="#kontak-kami">Kontak Kami</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#rawat-inap">Rawat Inap</a></li>
-            <li><a href="#jadwal-dokter">Download Jadwal Dokter</a></li>
-          </ul>
-        </div>
+      <!-- 3. Two-Tone Color Indicator Bar -->
+      <div class="indicator-divider">
+        <div class="divider-coral"></div>
+        <div class="divider-green"></div>
       </div>
 
-      <div class="footer-bottom">
-        <div>version 2.10</div>
-        <div>&copy; All rights reserved. <a href="#">IT RS AMC Muhammadiyah</a></div>
-      </div>
-    </footer>
+      <!-- 4. Filter Kartu (Klinik + Dokter) -->
+      <section class="filter-bar">
+        <div class="filter-grid">
+          <div class="input-field-group">
+            <label class="field-label" for="filter-klinik">Klinik</label>
+            <select id="filter-klinik" class="field-control">
+              <option value="" selected>Memuat...</option>
+            </select>
+          </div>
 
-  </main>
+          <div class="input-field-group">
+            <label class="field-label" for="filter-dokter">Dokter</label>
+            <select id="filter-dokter" class="field-control">
+              <option value="" selected>Memuat...</option>
+            </select>
+          </div>
 
-  <!-- Tombol naik ke atas (muncul saat halaman digulir ke bawah) -->
-  <button type="button" class="back-to-top" id="back-to-top" aria-label="Kembali ke atas" title="Ke atas">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 19V5M5 12l7-7 7 7"/>
-    </svg>
-  </button>
+          <button type="button" class="btn-reset-filter" id="btn-reset-filter">
+            Hapus Pilihan
+          </button>
+        </div>
 
-  <!-- External JavaScript -->
-  <script src="script.js"></script>
-</body>
+        <p class="filter-empty" id="filter-empty" hidden>
+          Tidak ada jadwal yang cocok dengan filter.
+        </p>
+      </section>
+
+      <!-- 5. Poliklinik Cards Grid (Dynamically Rendered from antrian.json) -->
+      <section class="poli-grid" id="poli-grid-container">
+        <!-- Loading Skeleton -->
+        <div class="poli-card skeleton-card" aria-hidden="true">
+          <div class="skeleton-line skeleton-title"></div>
+          <div class="skeleton-line skeleton-badge"></div>
+          <div class="skeleton-circle"></div>
+          <div class="skeleton-line skeleton-banner"></div>
+          <div class="skeleton-line skeleton-row"></div>
+          <div class="skeleton-line skeleton-row"></div>
+        </div>
+        <div class="poli-card skeleton-card" aria-hidden="true">
+          <div class="skeleton-line skeleton-title"></div>
+          <div class="skeleton-line skeleton-badge"></div>
+          <div class="skeleton-circle"></div>
+          <div class="skeleton-line skeleton-banner"></div>
+          <div class="skeleton-line skeleton-row"></div>
+          <div class="skeleton-line skeleton-row"></div>
+        </div>
+        <div class="poli-card skeleton-card" aria-hidden="true">
+          <div class="skeleton-line skeleton-title"></div>
+          <div class="skeleton-line skeleton-badge"></div>
+          <div class="skeleton-circle"></div>
+          <div class="skeleton-line skeleton-banner"></div>
+          <div class="skeleton-line skeleton-row"></div>
+          <div class="skeleton-line skeleton-row"></div>
+        </div>
+      </section>
+
+      <!-- =========================================
+         5. FOOTER SECTION
+         ========================================= -->
+      <footer class="footer-container">
+        <div class="footer-grid">
+          <!-- Brand & Address Column -->
+          <div class="footer-col">
+            <div class="brand-logo-wrap" style="margin-bottom: 16px">
+              <img
+                src="https://rsamcmuhammadiyah.com/assets/img/logo_baru.png"
+                alt="RS AMC Muhammadiyah"
+                class="footer-logo-img"
+              />
+            </div>
+
+            <p class="footer-address">
+              <a
+                href="https://www.google.com/maps/place/RS+AMC+Muhammadiyah/@-7.7996487,110.3491437,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7a57f4f8bdaec5:0x5dbee8a4bab35cbe!8m2!3d-7.7996487!4d110.3517186!16s%2Fg%2F11b8y_hr19?entry=tts&g_ep=EgoyMDI1MDQzMC4xIPu8ASoASAFQAw%3D%3D&skid=837751d2-3e6d-48be-b4f7-a4f405ac9c75"
+              >Jl. HOS Cokroaminoto 178, Pakuncen, Wirobrajan, Yogyakarta 55252</a>
+            </p>
+          </div>
+
+          <!-- Hubungi Kami -->
+          <div class="footer-col">
+            <h4>Hubungi Kami</h4>
+            <div class="footer-contact-item">
+              Emergency Call: <a href="tel:0274618224">(0274) 618224</a>
+            </div>
+            <div class="footer-contact-item">
+              Call Center: <a href="tel:0274618400">(0274) 618400</a>
+            </div>
+            <div class="footer-contact-item">
+              WhatsApp:
+              <a href="https://wa.me/6285179701004" target="_blank"
+                >+6285179701004</a
+              >
+            </div>
+            <div class="footer-contact-item">
+              Email:
+              <a href="mailto:info@amcmuhammadiyah.com"
+                >info@amcmuhammadiyah.com</a
+              >
+            </div>
+          </div>
+
+          <!-- Sekilas RS AMC -->
+          <div class="footer-col">
+            <h4>Sekilas RS AMC</h4>
+            <ul class="footer-links">
+              <li><a href="#point-of-interest">Point Of Interest</a></li>
+              <li><a href="#profil">Profil</a></li>
+              <li>
+                <a
+                  href="https://drive.google.com/drive/folders/1--fP4J_Hb5oZbsSS1TgWtJ6kDD5ytS2P"
+                  >Indikator Mutu</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://drive.google.com/drive/folders/1lXmeochTw-tXBPQaiR-ZyLFnSvIhePUY?usp=sharing"
+                  >Mitra Kami</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Jalur Cepat -->
+          <div class="footer-col">
+            <h4>Jalur Cepat</h4>
+            <ul class="footer-links">
+              <li><a href="#rawat-inap">Rawat Inap</a></li>
+              <li>
+                <a href="https://bit.ly/JadwalDokterAMC"
+                  >Download Jadwal Dokter</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>version 2.10</div>
+          <div>&copy; All rights reserved. IT RS AMC Muhammadiyah</div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Tombol naik ke atas (muncul saat halaman digulir ke bawah) -->
+    <button
+      type="button"
+      class="back-to-top"
+      id="back-to-top"
+      aria-label="Kembali ke atas"
+      title="Ke atas"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+  </body>
 </html>

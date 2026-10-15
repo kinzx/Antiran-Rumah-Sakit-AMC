@@ -792,8 +792,16 @@ select.field-control {
   line-height: 1.6;
   border-top: 1px solid #f1ece9;
   padding-top: 14px;
-  text-decoration: underline;
-  cursor: pointer;
+}
+
+.footer-address a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-address a:hover {
+  color: var(--primary-coral);
 }
 
 .footer-bottom {
@@ -1483,6 +1491,12 @@ select.field-control {
    ========================================= */
 .text-updated {
   animation: textFlashHighlight 0.8s ease-out;
+}
+
+/* Hanya elemen inline yang butuh inline-block supaya transform ikut animasi.
+   Jangan kena td: mengubah td jadi inline-block melepasnya dari table-cell,
+   jadi kolom nilai kehilangan rata-kanan saat auto-refresh. */
+.text-updated:not(td) {
   display: inline-block;
 }
 

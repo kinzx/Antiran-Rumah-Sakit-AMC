@@ -722,7 +722,7 @@ document.getElementById('btn-cek-action').addEventListener('click', function() {
     valEstimasi.innerText = 'Sekarang';
     valEstimasi.title = 'Giliran Anda berikutnya / segera dipanggil';
   } else {
-    // Hitung perkiraan jam panggilan (asumsi rata-rata 7 menit per pasien)
+    // Hitung perkiraan jam panggilan (asumsi rata-rata 5 menit per pasien)
     const now = new Date();
     let baseTime = new Date();
 
@@ -740,11 +740,11 @@ document.getElementById('btn-cek-action').addEventListener('click', function() {
       }
     }
 
-    const estimasiDate = new Date(baseTime.getTime() + (depan * 7 * 60 * 1000));
+    const estimasiDate = new Date(baseTime.getTime() + (depan * 5 * 60 * 1000));
     const targetH = String(estimasiDate.getHours()).padStart(2, '0');
     const targetM = String(estimasiDate.getMinutes()).padStart(2, '0');
     valEstimasi.innerText = `± ${targetH}:${targetM} WIB`;
-    valEstimasi.title = `Perkiraan jam ${targetH}:${targetM} WIB (± ${depan * 7} menit lagi)`;
+    valEstimasi.title = `Perkiraan jam ${targetH}:${targetM} WIB (± ${depan * 5} menit lagi)`;
   }
 });
 
