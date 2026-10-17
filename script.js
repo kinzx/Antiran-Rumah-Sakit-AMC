@@ -838,8 +838,39 @@ document.querySelectorAll('.mobile-drawer a').forEach(link => {
   syncButton(root.getAttribute('data-theme') || 'light');
 
   if (btn) {
-    btn.addEventListener('click', function () {
+    // Dial animasi: DURATION (ms) di sini, easing di style.css.
+    // Radius dihitung dari titik tombol ke sudut terjauh layar, jadi
+    // lingkaran selalu menutup layar penuh tanpa sisa tepi.
+    const DURATION = 550;
+
+    function flip() {
       applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+    }
+
+    btn.addEventListener('click', function () {
+      // Browser tanpa View Transitions, atau user minta less motion: ganti langsung
+      if (!document.startViewTransition ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        flip();
+        return;
+      }
+
+      const rect = btn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const radius = Math.hypot(
+        Math.max(cx, window.innerWidth - cx),
+        Math.max(cy, window.innerHeight - cy)
+      );
+
+      // Var ini di-<html>, jadi diwarisi snapshot ::view-transition-*.
+      // Set sebelum startViewTransition supaya snapshot baru pasti membacanya.
+      root.style.setProperty('--reveal-x', cx + 'px');
+      root.style.setProperty('--reveal-y', cy + 'px');
+      root.style.setProperty('--reveal-r', radius + 'px');
+      root.style.setProperty('--reveal-dur', DURATION + 'ms');
+
+      document.startViewTransition(flip).finished.catch(function () {});
     });
   }
 
