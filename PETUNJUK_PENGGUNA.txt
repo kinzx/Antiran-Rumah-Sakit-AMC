@@ -1,0 +1,263 @@
+================================================================================
+   PETUNJUK TEKNIS PENGGUNA
+   Monitor Antrian Poliklinik Rawat Jalan - RS AMC Muhammadiyah
+   Versi 2.10
+================================================================================
+
+Dokumen ini berisi panduan lengkap bagi pengguna (pasien, petugas, maupun
+pengunjung) untuk menggunakan halaman Monitor Antrian Poliklinik Rawat Jalan
+RS AMC Muhammadiyah.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 1. CARA MENGAKSES HALAMAN
+────────────────────────────────────────────────────────────────────────────────
+
+  - Buka browser (Chrome, Firefox, Edge, Safari) di perangkat Anda
+    (komputer, tablet, atau ponsel).
+  - Ketik alamat halaman monitor antrian yang diberikan oleh petugas RS
+    atau yang tersedia di area informasi rumah sakit.
+  - Halaman akan langsung menampilkan data antrian terkini.
+  - Tidak perlu login atau membuat akun.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 2. TAMPILAN UTAMA HALAMAN
+────────────────────────────────────────────────────────────────────────────────
+
+  Halaman terdiri dari beberapa bagian utama:
+
+  [A] NAVBAR (Bagian Paling Atas)
+      - Logo RS AMC Muhammadiyah di tengah.
+      - Tombol rumah (kiri) : membuka situs utama RS AMC.
+      - Tombol tema (kanan) : beralih antara mode terang dan mode gelap.
+
+  [B] INDIKATOR LIVE SYNCHRONIZED
+      - Tanda hijau berkedip "LIVE SYNCHRONIZED" menandakan data diperbarui
+        otomatis setiap 15 detik.
+      - Anda TIDAK perlu me-refresh halaman secara manual.
+
+  [C] CEK ANTRIAN SAYA
+      - Bagian untuk mengecek posisi antrean Anda secara spesifik.
+      - Menampilkan tanggal dan jam saat ini.
+
+  [D] KARTU-KARTU POLIKLINIK
+      - Setiap kartu mewakili satu jadwal dokter di satu poliklinik.
+      - Menampilkan informasi lengkap tentang antrian dokter tersebut.
+
+  [E] FOOTER
+      - Informasi kontak RS AMC Muhammadiyah.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 3. CARA CEK ANTRIAN SAYA
+────────────────────────────────────────────────────────────────────────────────
+
+  Fitur ini membantu Anda mengetahui posisi antrean secara detail.
+
+  LANGKAH-LANGKAH:
+
+  1) Pada bagian "Cek Antrian Saya", klik dropdown "Klinik".
+     Pilih nama klinik/poliklinik tempat Anda terdaftar.
+
+  2) Klik dropdown "Dokter".
+     Pilih nama dokter yang Anda tuju.
+     (Daftar dokter otomatis menyesuaikan dengan klinik yang dipilih.)
+
+  3) Klik dropdown "Nomor antrean Anda".
+     Pilih nomor antrean Anda dari daftar.
+     (Nomor akan muncul sesuai format kode dokter, misal: RP-1, RP-2, dst.)
+
+  4) Klik tombol "Cek".
+
+  HASIL YANG DITAMPILKAN:
+
+  +---------------------+------------------------------------------------------+
+  | Kolom               | Arti                                                 |
+  +---------------------+------------------------------------------------------+
+  | Nomor Antrean       | Nomor antrean Anda (beserta kode dokter)              |
+  | Pasien di Depan     | Jumlah pasien yang masih di depan Anda                |
+  | Estimasi Giliran    | Perkiraan jam Anda akan dipanggil                     |
+  | Status              | Status nomor antrean Anda saat ini                    |
+  +---------------------+------------------------------------------------------+
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 4. PENJELASAN STATUS NOMOR ANTREAN
+────────────────────────────────────────────────────────────────────────────────
+
+  +---------------------+------------------------------------------------------+
+  | Status              | Arti                                                 |
+  +---------------------+------------------------------------------------------+
+  | Belum Datang        | Anda belum melakukan check-in di loket pendaftaran    |
+  | Sudah Datang        | Anda sudah check-in dan sedang menunggu dipanggil     |
+  | Dipanggil           | Nomor Anda sedang dipanggil! Segera ke ruang periksa  |
+  | Diperiksa           | Anda sedang dalam pemeriksaan dokter                  |
+  | Terlewati           | Nomor Anda sudah terlewat, segera lapor ke petugas    |
+  +---------------------+------------------------------------------------------+
+
+  CATATAN PENTING:
+  Jika status menunjukkan "Terlewati", segera lapor ke petugas pendaftaran
+  poli untuk dipanggil ulang.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 5. PENJELASAN ESTIMASI GILIRAN
+────────────────────────────────────────────────────────────────────────────────
+
+  Estimasi giliran menunjukkan perkiraan waktu Anda akan dipanggil.
+
+  - Format waktu : "± HH:MM WIB" (contoh: ± 10:30 WIB)
+  - "Sekarang"   : giliran Anda berikutnya / segera dipanggil
+  - "Selesai"    : pemeriksaan Anda telah selesai
+  - "Terlewati"  : nomor Anda sudah terlewat
+
+  Perhitungan estimasi menggunakan rata-rata 5 menit per pasien.
+  Waktu aktual dapat berbeda tergantung kondisi pemeriksaan masing-masing
+  pasien.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 6. CARA MENGGUNAKAN FILTER KARTU POLIKLINIK
+────────────────────────────────────────────────────────────────────────────────
+
+  Jika Anda ingin melihat kartu poliklinik tertentu saja (tanpa harus
+  menggulir semua kartu):
+
+  1) Pada bagian filter (di bawah garis pemisah warna koral-hijau),
+     pilih "Klinik" yang diinginkan.
+
+  2) (Opsional) Pilih juga "Dokter" untuk menyaring lebih spesifik.
+
+  3) Kartu yang tidak sesuai akan otomatis disembunyikan.
+
+  4) Untuk menampilkan semua kartu kembali, klik tombol "Hapus Pilihan".
+
+  CATATAN: Filter kartu ini TERPISAH dari fitur "Cek Antrian Saya".
+  Mengubah filter kartu tidak mengubah pilihan di bagian Cek Antrian,
+  dan sebaliknya.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 7. MEMBACA INFORMASI PADA KARTU POLIKLINIK
+────────────────────────────────────────────────────────────────────────────────
+
+  Setiap kartu menampilkan informasi berikut:
+
+  [Bagian Atas Kartu]
+  - Nama Dokter          : nama dokter yang praktik
+  - Badge Status         : status praktik dokter saat ini
+
+  [Bagian Tengah Kartu]
+  - Ikon & Nama Klinik   : nama poliklinik beserta ikon khasnya
+  - Menunggu             : jumlah pasien yang masih menunggu
+
+  [Banner "Sedang Diperiksa"]
+  - Menunjukkan nomor antrean yang SAAT INI sedang diperiksa dokter
+
+  [Tabel Detail]
+  +---------------------------+------------------------------------------------+
+  | Baris                     | Arti                                           |
+  +---------------------------+------------------------------------------------+
+  | Jam Praktik               | Jadwal mulai praktik dokter                    |
+  | Terlambat Belum Datang    | Pasien yang nomornya sudah lewat tapi belum    |
+  |                           | datang sama sekali                             |
+  | Terlambat Sudah Datang    | Pasien yang sudah datang tapi nomornya sudah   |
+  |                           | terlewat                                       |
+  | Dipanggil Tidak Hadir     | Pasien yang dipanggil tapi tidak hadir         |
+  | Selesai                   | Jumlah pasien yang sudah selesai diperiksa     |
+  | Total Pasien              | Total seluruh pasien yang terdaftar            |
+  +---------------------------+------------------------------------------------+
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 8. ARTI WARNA PADA KARTU
+────────────────────────────────────────────────────────────────────────────────
+
+  [A] WARNA BANNER "SEDANG DIPERIKSA":
+
+      Koral/Oranye (menampilkan "-")
+        -> Dokter belum mulai memeriksa pasien.
+
+      Kuning Tua (menampilkan kode, misal "RP-4")
+        -> Dokter sedang memeriksa pasien dengan nomor tersebut.
+
+      Hijau (menampilkan "Pasien selesai")
+        -> Semua pasien sudah selesai diperiksa.
+
+  [B] BADGE STATUS DOKTER:
+
+      "Belum Mulai" (kuning)
+        -> Dokter belum memulai sesi praktik.
+
+      "Berjalan" (hijau)
+        -> Dokter sedang aktif praktik dan melayani pasien.
+
+      "Selesai" (abu-abu)
+        -> Sesi praktik dokter telah selesai untuk hari ini.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 9. MODE GELAP / MODE TERANG
+────────────────────────────────────────────────────────────────────────────────
+
+  - Klik ikon matahari/bulan di pojok kanan atas navbar untuk beralih
+    antara mode terang dan mode gelap.
+  - Preferensi Anda akan diingat oleh browser, sehingga saat halaman
+    dibuka kembali, mode yang terakhir dipilih tetap aktif.
+  - Mode gelap cocok digunakan di ruangan dengan pencahayaan rendah
+    untuk mengurangi silau layar.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 10. TOMBOL KEMBALI KE ATAS
+────────────────────────────────────────────────────────────────────────────────
+
+  - Saat Anda menggulir halaman ke bawah, tombol panah ke atas akan
+    muncul di pojok kanan bawah layar.
+  - Klik tombol tersebut untuk langsung kembali ke bagian atas halaman.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 11. TIPS DAN CATATAN PENTING
+────────────────────────────────────────────────────────────────────────────────
+
+  * Data antrian diperbarui otomatis setiap 15 detik. Anda TIDAK perlu
+    me-refresh halaman secara manual.
+
+  * Estimasi waktu giliran bersifat PERKIRAAN (rata-rata 5 menit per
+    pasien). Waktu aktual dapat berbeda.
+
+  * Pastikan perangkat Anda terhubung ke jaringan internet/WiFi yang
+    stabil agar data dapat diperbarui secara real-time.
+
+  * Jika nomor antrean Anda menunjukkan status "Terlewati", segera
+    lapor ke petugas pendaftaran poli untuk dipanggil ulang.
+
+  * Halaman ini dapat dibuka di berbagai perangkat: komputer desktop,
+    laptop, tablet, maupun ponsel (smartphone).
+
+  * Jika kartu poliklinik tidak muncul (hanya tampil kotak abu-abu
+    berkedip), kemungkinan koneksi ke server antrian sedang terganggu.
+    Tunggu beberapa saat, data akan otomatis dimuat saat koneksi pulih.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 12. KONTAK BANTUAN
+────────────────────────────────────────────────────────────────────────────────
+
+  Jika mengalami kendala dalam menggunakan halaman ini, silakan hubungi:
+
+  Emergency Call  : (0274) 618224
+  Call Center     : (0274) 618400
+  WhatsApp        : +6285179701004
+  Email           : info@amcmuhammadiyah.com
+  Website         : https://rsamcmuhammadiyah.com
+
+  Alamat RS       : Jl. HOS Cokroaminoto 178, Pakuncen, Wirobrajan,
+                    Yogyakarta 55252
+
+
+================================================================================
+  (c) All rights reserved. IT RS AMC Muhammadiyah
+================================================================================
