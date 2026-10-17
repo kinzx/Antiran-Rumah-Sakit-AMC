@@ -4,7 +4,7 @@
 // ============================================================
 
 // ---- CONFIGURATION ----
-const ANTRIAN_DATA_URL = 'proxy.php';
+const ANTRIAN_DATA_URL = 'proxy-test.php';
 const REFRESH_INTERVAL_MS = 15000; // 15 seconds
 let refreshTimer = null;
 let antrianData = [];
@@ -875,6 +875,33 @@ document.querySelectorAll('.mobile-drawer a').forEach(link => {
   }
 
   // Tema mengikuti pilihan user saja (default terang), tidak ikut pengaturan sistem
+})();
+
+
+// ============================================================
+// 4b. NAVBAR MENEMPEL & MENYUSUT SAAT SCROLL
+// ============================================================
+(function () {
+  const nav = document.querySelector('.navbar');
+  if (!nav) return;
+
+  // Di bawah ambang ini navbar masih di posisi semula; di atasnya menyusut
+  // (padding + tinggi logo dipangkas lewat .is-scrolled).
+  const THRESHOLD = 40;
+  let ticking = false;
+
+  function sync() {
+    nav.classList.toggle('is-scrolled', window.scrollY > THRESHOLD);
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(sync);
+  }, { passive: true });
+
+  sync();
 })();
 
 
